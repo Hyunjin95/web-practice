@@ -1,0 +1,80 @@
+/* css rule
+Selector {
+    Property: Value;
+}
+*/
+
+/* 
+    ele1, ele2: both ele1 and ele2 
+    ele1 ele2: ele2 which has ele1 as a parent.
+    ele1 > ele2: ele2 which has ele1 as a direct parent.
+    ele1 + ele2: ele2 which is exactly after h1.
+*/
+
+/* 
+    :hover, :last-child, :first-child
+    !important (not recommended)
+*/
+
+/*
+    What selectors win out in the cascade depends on:
+        - Specificity (There is a specificity calcultor on the internet)
+        - Importance
+        - Source Order
+*/
+
+* {
+    text-align: right;
+}
+
+/* body {
+    background-image: url("https://wallpapershome.com/images/pages/pic_h/16745.jpg");
+    background-size: cover;
+} */
+
+p {
+    color: #AA4139;
+    text-align: center;
+    border: 5px solid rgb(255, 176, 178, 0.5);
+    cursor: pointer;
+}
+
+p {
+    text-decoration: underline;
+    text-transform: uppercase;
+    line-height: 30px;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 100%;
+    font-family: "Times New Roman", Georgia, ;
+}
+
+img {
+    float: right;
+}
+
+footer {
+    clear: both;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+}
+
+.webtext:first-child {
+    border: 5px dashed green;
+}
+
+.active {
+    color: red;
+}
+
+#div1 {
+    background: rgba(0, 0, 255, 0.2);
+}
+
+#div2 {
+    background: rgba(255, 0, 0, 0.2);
+}
