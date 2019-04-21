@@ -1,0 +1,23 @@
+h2 {
+    color: blue;
+}
+
+p {
+    font-size: 20px;
+    color: green;
+}
+
+span {
+    /* 5em means the font size is equal to 5 times the containing element. In this case it should be 100px. */
+    /* rem is related to the root element. (html) */
+    font-size: 5em;
+}
+
+.boxmodel {
+    border: 5px solid red;
+    display: inline-block;
+    padding: 5px 20px 5px 20px;
+    margin: 0px 20px;
+    width: 33px;
+    height: 55px;
+}
