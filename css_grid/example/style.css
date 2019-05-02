@@ -1,5 +1,6 @@
 body {
     margin: auto 0;
+    font-family: Arial;
 }
 
 .zone {
@@ -18,6 +19,12 @@ body {
 }
 
 /* Navigation Start */
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 
 .main-nav {
     display: flex;
@@ -55,10 +62,11 @@ a {
     align-items: center;
     justify-content: center;
     height: 50vh;
+    padding-top: 60px;
 }
 
-.red {
-    background: red;
+.cover {
+    width: 30rem;
 }
 
 /* Cover End */
@@ -76,6 +84,13 @@ a {
     cursor: pointer;
     padding: 100px;
     margin: 20px;
+}
+
+.box:hover {
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    -o-transform: rotate(-7deg);
+    transform: rotate(-7deg);
 }
 
 .box > img {
