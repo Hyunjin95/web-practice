@@ -12,7 +12,7 @@ function createListElement() {
 	var li = document.createElement("li");
 	var btn = document.createElement("button");
 	li.onclick = toggleList;
-	btn.innerHTML = "Delete";
+	btn.textContent = "Delete";
 	btn.className = "delete";
 	btn.onclick = removeList;
 
