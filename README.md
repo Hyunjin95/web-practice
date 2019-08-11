@@ -1,3 +1,3 @@
 # Web Practice
 
-This repository is for practicing web development.
+This repository is to practice web development.
