@@ -3,6 +3,7 @@ import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import SignIn from './components/SignIn/SignIn';
+import Register from './components/Register/Register';
 import Logo from './components/Logo/Logo';
 import Loader from './components/Loader/Loader';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -36,6 +37,7 @@ class App extends Component {
       isError: false,
       loading: false,
       route: 'signin',
+      isSignedIn: false,
     }
   }
 
@@ -101,32 +103,41 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
+    if (route === 'signout') {
+      this.setState({isSignedIn: false})
+    }
+    else if (route === 'home') {
+      this.setState({isSignedIn: true})
+    }
     this.setState({
       route: route
     })
   };
 
   render() {
+    const { isSignedIn, imageUrl, route, box, isError, loading } = this.state;
     return (
       <div className="App">
         <Particles className='particles' 
           params={particlesOptions}
         />
-        <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signin' ?
-          <SignIn onRouteChange={this.onRouteChange} />
-          :
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        { route === 'home' ?
           <div>
             <Logo />
             <Rank />
             <ImageLinkForm onInputChange={this.onInputChange}
                             onButtonSubmit={this.onButtonSubmit}/>
-            { this.state.loading ? <Loader /> : null }
-            <FaceRecognition isError={this.state.isError}
-                              box={this.state.box}
-                              imageUrl={this.state.imageUrl}
-                              loading={this.state.loading} />
+            { loading ? <Loader /> : null }
+            <FaceRecognition isError={isError}
+                              box={box}
+                              imageUrl={imageUrl}
+                              loading={loading} />
           </div>
+          : route === 'signin' || route === 'signout' ?
+          <SignIn onRouteChange={this.onRouteChange} />
+          :
+          <Register onRouteChange={this.onRouteChange} />
         }
       </div>
     );
