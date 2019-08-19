@@ -30,7 +30,42 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
+      box: {},
+      isError: false,
     }
+  }
+
+  calculateFaceLocation = (response) => {
+    const bounding_box = response.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('inputimage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+
+    return {
+      leftCol: bounding_box.left_col * width,
+      topRow: bounding_box.top_row * height,
+      rightCol: width - bounding_box.right_col * width,
+      bottomRow: height - bounding_box.bottom_row * height,
+    }    
+  };
+
+  displayFaceBox = (box) => {
+    this.setState({
+      isError: false,
+      box: box
+    });
+  };
+
+  displayError = () => {
+    this.setState({
+      isError: true,
+      box: {
+        leftCol: 0,
+        topRow: 0,
+        rightCol: 0,
+        bottomRow: 0,
+      }
+    });
   }
 
   onInputChange = (event) => {
@@ -39,14 +74,17 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
+
     app.models.initModel({id: Clarifai.FACE_DETECT_MODEL})
       .then(faceDetectModel => {
-        return faceDetectModel.predict(this.state.input);
+        return faceDetectModel.predict(this.state.imageUrl);
       })
       .then(response => {
-        console.log(response);
-        const face_box = response.outputs[0].data.regions[0].region_info.bounding_box;
-        console.log(face_box);
+        this.displayFaceBox(this.calculateFaceLocation(response));
+      })
+      .catch(err => {
+        console.log(err);
+        this.displayError();
       });
   }
 
@@ -61,7 +99,7 @@ class App extends Component {
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange}
                         onButtonSubmit={this.onButtonSubmit}/>
-        <FaceRecognition imageUrl={this.state.imageUrl} />
+        <FaceRecognition isError={this.state.isError} box={this.state.box} imageUrl={this.state.imageUrl} />
       </div>
     );
   }
