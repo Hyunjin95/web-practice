@@ -3,6 +3,7 @@ import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
+import Loader from './components/Loader/Loader';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
@@ -32,6 +33,7 @@ class App extends Component {
       imageUrl: '',
       box: {},
       isError: false,
+      loading: false,
     }
   }
 
@@ -73,7 +75,10 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input});
+    this.setState({
+      imageUrl: this.state.input,
+      loading: true
+    });
 
     app.models.initModel({id: Clarifai.FACE_DETECT_MODEL})
       .then(faceDetectModel => {
@@ -85,6 +90,11 @@ class App extends Component {
       .catch(err => {
         console.log(err);
         this.displayError();
+      })
+      .finally(() => {
+        this.setState({
+          loading: false
+        });
       });
   }
 
@@ -99,7 +109,11 @@ class App extends Component {
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange}
                         onButtonSubmit={this.onButtonSubmit}/>
-        <FaceRecognition isError={this.state.isError} box={this.state.box} imageUrl={this.state.imageUrl} />
+        {this.state.loading ? <Loader /> : null}
+        <FaceRecognition isError={this.state.isError}
+                          box={this.state.box}
+                          imageUrl={this.state.imageUrl}
+                          loading={this.state.loading} />
       </div>
     );
   }
