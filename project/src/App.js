@@ -38,8 +38,27 @@ class App extends Component {
       loading: false,
       route: 'signin',
       isSignedIn: false,
+      user: {
+        email: '',
+        id: '',
+        name: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
+
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        email: data.email,
+        id: data.id,
+        name: data.name,
+        entries: data.entries,
+        joined: data.joined
+      }
+    });
+  };
 
   calculateFaceLocation = (response) => {
     const bounding_box = response.outputs[0].data.regions[0].region_info.bounding_box;
@@ -115,7 +134,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, box, isError, loading } = this.state;
+    const { isSignedIn, imageUrl, route, box, isError, loading, user } = this.state;
     return (
       <div className="App">
         <Particles className='particles' 
@@ -125,7 +144,7 @@ class App extends Component {
         { route === 'home' ?
           <div>
             <Logo />
-            <Rank />
+            <Rank name={user.name} entries={user.entries} />
             <ImageLinkForm onInputChange={this.onInputChange}
                             onButtonSubmit={this.onButtonSubmit}/>
             { loading ? <Loader /> : null }
@@ -135,9 +154,9 @@ class App extends Component {
                               loading={loading} />
           </div>
           : route === 'signin' || route === 'signout' ?
-          <SignIn onRouteChange={this.onRouteChange} />
+          <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
           :
-          <Register onRouteChange={this.onRouteChange} />
+          <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         }
       </div>
     );
