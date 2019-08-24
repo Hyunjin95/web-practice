@@ -104,10 +104,22 @@ class App extends Component {
     });
 
     app.models.initModel({id: Clarifai.FACE_DETECT_MODEL})
-      .then(faceDetectModel => {
-        return faceDetectModel.predict(this.state.imageUrl);
-      })
+      .then(faceDetectModel => faceDetectModel.predict(this.state.imageUrl))
       .then(response => {
+        if (response) {
+          fetch('http://127.0.0.1:3000/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+            .then(response => response.json())
+            .then(count => {
+              this.setState(Object.assign(this.state.user, { entries: count }));
+            });
+        }
+
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
       .catch(err => {

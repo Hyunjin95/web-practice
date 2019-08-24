@@ -42,7 +42,7 @@ app.get('/profile/:id', (req, res) => {
     const { id } = req.params;
     
     database.users.forEach(user => {
-        if (user.id == id) {
+        if (user.id === id) {
             return res.json(user);
         }
     });
@@ -78,13 +78,17 @@ app.post('/register', (req, res) => {
 });
 
 app.put('/image', (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
+    let found = false;
     database.users.forEach(user => {
-        if (user.id == id) {
-            return res.json(++user.entries);
+        if (user.id === id) {
+            res.json(++user.entries);
+            found = true;
         }
     });
-    res.status(404).json('no such user');
+    if (!found) {
+        res.status(404).json('no such user');
+    }
 });
 
 app.listen(3000, () => {
