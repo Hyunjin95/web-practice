@@ -1,7 +1,10 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const database = {
     users: [
@@ -22,7 +25,13 @@ const database = {
             joined: new Date()
         },
     ],
-
+    login: [
+        {
+            id: '987',
+            password_hash: '',
+            email: 'abc@abcabc.com'
+        }
+    ]
 };
 
 app.get('/', (req, res) => {
@@ -53,6 +62,10 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { email, name, password } = req.body;
+    bcrypt.hash(password, null, null, (err, hash) => {
+        console.log(hash);
+    });
+
     database.users.push({
         id: '15151',
         name: name,
