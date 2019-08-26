@@ -26,7 +26,7 @@ app.use(cors());
 
 
 app.get('/', (req, res) => {
-    res.sendStatus(404);
+    res.sendStatus(200);
 });
 
 app.get('/profile/:id', profile.handleGetProfile(db));
