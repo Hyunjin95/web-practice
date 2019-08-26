@@ -29,13 +29,10 @@ app.get('/', (req, res) => {
     res.sendStatus(404);
 });
 
-app.get('/profile/:id', (req, res) => { profile.handleGetProfile(req, res, db) });
-
-app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) });
-
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
-
-app.put('/image', (req, res) => { image.handleImage(req, res, db) });
+app.get('/profile/:id', profile.handleGetProfile(db));
+app.post('/signin', signin.handleSignin(db, bcrypt));
+app.post('/register', register.handleRegister(db, bcrypt));
+app.put('/image', image.handleImage(db));
 
 app.listen(3000, () => {
     console.log('app is running on port 3000.');
