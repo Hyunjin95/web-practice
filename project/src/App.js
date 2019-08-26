@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
@@ -12,8 +11,6 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
 import 'tachyons';
 
-const apiKey = '405201c0ed6d454db6317f758fb3bb11';
-const app = new Clarifai.App({apiKey: apiKey});
 
 const particlesOptions = {
   particles: {
@@ -105,8 +102,14 @@ class App extends Component {
       loading: true
     });
 
-    app.models.initModel({id: Clarifai.FACE_DETECT_MODEL})
-      .then(faceDetectModel => faceDetectModel.predict(this.state.imageUrl))
+    fetch('http://127.0.0.1:3000/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+      .then(response => response.json())
       .then(response => {
         if (response) {
           fetch('http://127.0.0.1:3000/image', {
@@ -116,23 +119,15 @@ class App extends Component {
               id: this.state.user.id
             })
           })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count }));
+              this.setState(Object.assign(this.state.user, { entries: count }));      
             });
+          this.displayFaceBox(this.calculateFaceLocation(response));
         }
-
-        this.displayFaceBox(this.calculateFaceLocation(response));
       })
-      .catch(err => {
-        console.log(err);
-        this.displayError();
-      })
-      .finally(() => {
-        this.setState({
-          loading: false
-        });
-      });
+      .catch(() => this.displayError())
+      .finally(() => this.setState({ loading: false }));
   }
 
   onRouteChange = (route) => {
