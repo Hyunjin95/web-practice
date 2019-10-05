@@ -1,1 +1,1 @@
-console.log("Webpack Test!!");
+const a = 3;

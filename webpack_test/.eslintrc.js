@@ -1,7 +1,7 @@
 module.exports = {
     "parser": "babel-eslint",
     "rules": {
-        "no-console": "error"
+        "no-console": "warn"
     },
     "extends": ["airbnb-base"]
 };
