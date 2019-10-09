@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
 
 h1 {
+    font-display: swap;
     font-family: 'Luckiest Guy', cursive;
     font-size: 5em;
     color: #0ccac4;
