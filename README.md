@@ -26,10 +26,9 @@ The aim of the repository is to understand how to develop web applications.
   * Critical Rendering Path
 * Testing
   * Jest
+  * Enzyme (for React)
 
 # What I'm going to study
-* Testing
-  * Enzyme
 * TypeScript
 * Rendering
   * CSR vs SSR
