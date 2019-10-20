@@ -21,6 +21,9 @@ The aim of the repository is to understand how to develop web applications.
 * Production/Deployment
   * Webpack
   * Parcel
+  * PWA
+* Performance
+  * Critical Rendering Path
 * Testing
   * Jest
 
