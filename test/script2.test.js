@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const swapi = require('./script2.js');
 
-// The below is one way of testing async functions.
+// The following is one way of testing async functions.
 describe('getPeopleAsync', () => {
     it('calls swapi to get people', (done) => {
         expect.assertions(1);
@@ -12,7 +12,7 @@ describe('getPeopleAsync', () => {
     });
 });
 
-// The below is another and more common way of testing async functions.
+// The following is another and more common way of testing async functions.
 describe('getPeoplePromise', () => {
     it('calls swapi to get people', () => {
         expect.assertions(2);
@@ -24,10 +24,10 @@ describe('getPeoplePromise', () => {
 });
 
 describe('Mocks and Spies', () => {
-    // Mirror the promises in order to reduce a testing time.
+    // It mirrors the promises in order to reduce a testing time.
     it('getPeopleAsync returns count and results', () => {
-        const mockFetch = jest.fn().
-            mockReturnValue(Promise.resolve({
+        const mockFetch = jest.fn()
+            .mockReturnValue(Promise.resolve({
                 json: () => Promise.resolve({
                     count: 87,
                     results: [0, 1, 2, 3, 4, 5]

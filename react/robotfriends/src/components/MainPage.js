@@ -30,7 +30,7 @@ class MainPage extends React.Component {
                     <SearchBox searchChange={onSearchChange} />
                     <Scroll>
                         <ErrorBoundary isError={isError}>
-                            <CardList robots={this.filteredRobots} />
+                            <CardList robots={this.filteredRobots()} />
                         </ErrorBoundary>
                     </Scroll>    
                 </div>

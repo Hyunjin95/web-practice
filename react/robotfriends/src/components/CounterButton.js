@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-class CounterButton extends PureComponent {
+class CounterButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

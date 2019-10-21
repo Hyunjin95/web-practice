@@ -6,7 +6,6 @@ import {
 } from './constants';
 
 import * as reducers from './reducers';
-import * as actions from './actions';
 
 describe('searchRobots', () => {
     const initialStateSearch = { searchField: '' };
@@ -16,7 +15,7 @@ describe('searchRobots', () => {
     });
 
     it('should handle CHANGE_SEARCHFIELD', () => {
-        expect(reducers.searchRobots(initialStateSearch, actions.setSearchField('abc')))
+        expect(reducers.searchRobots(initialStateSearch, { type: CHANGE_SEARCH_FIELD, payload: 'abc' }))
             .toEqual({ searchField: 'abc' });
     });
 });

@@ -6,7 +6,7 @@ exports[`renders MainPage without crashing 1`] = `
   <SearchBox searchChange={[undefined]} />
   <Scroll>
     <ErrorBoundary isError={false}>
-      <CardList robots={[Function]} />
+      <CardList robots={{...}} />
     </ErrorBoundary>
   </Scroll>
 </div>"

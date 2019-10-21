@@ -16,6 +16,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
         onRequestRobots: () => dispatch(requestRobots())
+        // The following is the another way to define this function. See also actions.js
+        // onRequestRobots: () => requestRobots(dispatch)
     };
 };
 
