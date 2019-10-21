@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = (props) => {
-    const cardComponent = props.robots.map(user =>
+const CardList = props => {
+    const { robots } = props;
+    const cardComponent = robots.map((user, i) =>
         <Card
-            key={user.id}
+            key={i}
             id={user.id}
             name={user.name}
             email={user.email}
