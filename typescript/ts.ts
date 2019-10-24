@@ -42,3 +42,85 @@ let sing = (): void => {
 let error = (): never => {
     throw Error('oops');
 }
+
+// interface
+interface RobotArmy {
+    count: number,
+    type: string,
+    magic?: string // optional property
+};
+
+let fightRobotArmy = (robot: RobotArmy): RobotArmy => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+    return duplicatedRobot;
+};
+
+// This function is exactly the same as the one above
+let fightRobotArmy2 = (robot: {count: number, type: string, magic: string}): RobotArmy => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+    return duplicatedRobot;
+};
+
+// type
+type RobotArmyType = {
+    count: number,
+    type: string,
+    magic: string
+};
+
+let fightRobotArmyType = (robot: RobotArmy): RobotArmy => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+    return duplicatedRobot;
+};
+
+
+// Type Assertion
+interface Cat {
+    count: number,
+    name: string
+};
+
+let dog = {} as Cat;
+dog.count = 3;
+
+
+// Function
+let fightRobotArmy3 = (robot: RobotArmy): RobotArmy => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+    return duplicatedRobot;
+};
+
+let fightRobotArmy4 = (robot: RobotArmy): void => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+};
+
+let fightRobotArmy6 = (robot: RobotArmy): number => {
+    const duplicatedRobot = { ...robot, type: 'fight' };
+    return 3;
+};
+
+
+// Class
+class Animal {
+    private sing: string = 'lalala';
+
+    constructor(sound: string) {
+        this.sing = sound;
+    }
+
+    greet() {
+        return `Hello, ${this.sing}`;
+    }
+}
+
+let lion = new Animal('raawwr');
+lion.greet();
+
+
+// Union
+let confused: string | number | boolean = 3;
+confused = 'a';
+confused = true;
+
+let x = 4;
+// x = 'hello'; - TypeScript can detect this error.
