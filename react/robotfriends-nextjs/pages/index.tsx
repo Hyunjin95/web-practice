@@ -14,7 +14,8 @@ const Index: React.FC = () => (
   <React.Fragment>
     <Head>
       <title>RobotFriends</title>
-      <link href="/public/index.css" />
+      <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+      <link rel="stylesheet" href="/static/index.css"/>
     </Head>
     <Provider store={store}>
       <App />

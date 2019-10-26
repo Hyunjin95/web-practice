@@ -4,8 +4,6 @@ import SearchBox from './SearchBox';
 import Scroll from './Scroll';
 import ErrorBoundary from './ErrorBoundary';
 import Header from './Header';
-// import './MainPage.css';
-
 
 class MainPage extends React.Component {
     componentDidMount() {
