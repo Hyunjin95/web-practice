@@ -34,7 +34,7 @@ class MainPage extends React.Component<IAppProps, IStates> {
     render() {
         const { isError } = this.props;
         
-        return !this.state.robots.length ?
+        return!this.state.robots.length ?
             <h1>Loading...</h1>
             :
             (
