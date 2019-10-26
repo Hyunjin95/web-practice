@@ -28,11 +28,11 @@ The aim of the repository is to understand how to develop web applications.
   * Jest
   * Enzyme (for React)
 * TypeScript
-
-# What I'm going to study
 * Rendering
   * CSR vs SSR
   * Next.js
+
+# What I'm going to study
 * Security
   * XSS
   * CSRF
