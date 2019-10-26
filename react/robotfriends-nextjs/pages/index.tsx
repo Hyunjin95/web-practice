@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from 'isomorphic-fetch';
-import Head from 'next/head';
+import Layout from '../components/Layout';
 import MainPage from '../components/MainPage';
 
 export interface IRobot {
@@ -14,20 +14,14 @@ export interface IAppProps {
     isError: boolean
 };
 
-interface StatelessPage<P> extends React.FC<P> {
+export interface StatelessPage<P> extends React.FC<P> {
     getInitialProps?: () => Promise<P>
 };
 
 const Index: StatelessPage<IAppProps> = (props: IAppProps) => (
-    <React.Fragment>
-        <Head>
-            <title>RobotFriends</title>
-            <link rel="icon" href="/favicon.ico"/>
-        </Head>
+    <Layout>
         <MainPage { ...props } />
-        <link rel="stylesheet" href="/static/index.css"/>
-        <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-    </React.Fragment>
+    </Layout>
 );
 
 Index.getInitialProps = async (): Promise<IAppProps> => {
