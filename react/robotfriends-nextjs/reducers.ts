@@ -17,7 +17,7 @@ const initialStateSearch: ISearchState = {
     searchField: ''
 };
 
-export const searchRobots = (state: ISearchState = initialStateSearch, action: SearchField) => {
+export const searchRobots = (state: ISearchState = initialStateSearch, action: SearchField): ISearchState => {
     switch(action.type) {
         case CHANGE_SEARCH_FIELD:
             // return Object.assign({}, state, { searchField: action.payload });
@@ -33,7 +33,7 @@ const initialStateRobots: IRequestRobotState = {
     isError: false
 };
 
-export const requestRobots = (state: IRequestRobotState = initialStateRobots, action: RequestRobots) => {
+export const requestRobots = (state: IRequestRobotState = initialStateRobots, action: RequestRobots): IRequestRobotState => {
     switch(action.type) {
         case REQUEST_ROBOTS_PENDING:
             return { ...state, isPending: true };

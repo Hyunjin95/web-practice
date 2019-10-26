@@ -1,3 +1,6 @@
+
+import { Action } from 'redux';
+
 import {
     CHANGE_SEARCH_FIELD,
     REQUEST_ROBOTS_FAILED,
@@ -11,6 +14,9 @@ import {
     RequestRobots
 } from './types';
 
+interface IChangeSearchFieldAction extends Action<'CHANGE_SEARCH_FIELD'> {
+    type: 'CHANGE_SEARCH_FIELD'
+}
 
 export const setSearchField = (text: string): SearchField => ({
     type: CHANGE_SEARCH_FIELD,

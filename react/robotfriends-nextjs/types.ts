@@ -65,7 +65,8 @@ export interface ISearchState {
 export interface IRequestRobotState {
     isPending: boolean,
     isError: boolean,
-    robots?: Array<robot>
+    robots?: Array<robot>,
+    error?: any
 };
 
 export type State = ISearchState | IRequestRobotState;
