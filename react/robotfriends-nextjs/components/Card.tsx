@@ -1,12 +1,7 @@
 import React from 'react';
+import { IRobot } from '../pages/index';
 
-interface CardStatelessProps {
-    name: string,
-    email: string,
-    id: number
-};
-
-const Card: React.FC<CardStatelessProps> = (props) => {
+const Card: React.FC<IRobot> = (props) => {
     const { name, email, id } = props;
     return (
         <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">

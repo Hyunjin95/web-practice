@@ -11,10 +11,10 @@ class Header extends Component<IProps, IStates> {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <h1 className="f1">Robot Friends</h1>
                 <CounterButton color={'red'} />
-            </div>
+            </React.Fragment>
         );
     }
 }

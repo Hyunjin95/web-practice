@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card';
-import { IRobot } from '../types';
+import { IRobot } from '../pages/index';
 
 const CardList = ({ robots }: {robots: Array<IRobot>}) => {
     const cardComponent = robots.map((user, i) =>
@@ -12,7 +12,7 @@ const CardList = ({ robots }: {robots: Array<IRobot>}) => {
         />
     );
 
-    return <div>{cardComponent}</div>;
+    return (<React.Fragment>{cardComponent}</React.Fragment>);
 };
 
 export default CardList;

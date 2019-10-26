@@ -2,7 +2,7 @@ import React from 'react';
 
 interface IProps {
     isError: boolean,
-    children?: JSX.Element
+    children: JSX.Element
 }
 
 const ErrorBoundary = (props: IProps) => {
