@@ -33,6 +33,7 @@ The aim of the repository is to understand how to develop web applications.
   * Next.js
 * Security
   * Injection
+  * Logging
   * XSS
   * CSRF
 
