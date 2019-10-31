@@ -31,11 +31,12 @@ The aim of the repository is to understand how to develop web applications.
 * Rendering
   * CSR vs SSR
   * Next.js
-
-# What I'm going to study
 * Security
+  * Injection
   * XSS
   * CSRF
+
+# What I'm going to study
 * Code Anaylsis
 * Docker
 * Redis
