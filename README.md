@@ -34,8 +34,8 @@ The aim of the repository is to understand how to develop web applications.
 * Security
   * Injection
   * Logging
-  * XSS
-  * CSRF
+  * XSS, CSRF
+  * Access Control, Encryption
 
 # What I'm going to study
 * Code Anaylsis

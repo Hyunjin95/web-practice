@@ -18,12 +18,12 @@ const userInputInHTML = (input) => {
 
 const sendToServer = () => {
     const input = document.querySelector('#userinput').value;
-    userInputInHTML(input)
+    userInputInHTML(input);
     fetch('http://localhost:3000/secret', {
         method: 'POST',
-        body: JSON.stringify({userInput: input}),
+        body: JSON.stringify({ userInput: input }),
         headers: new Headers({
-        'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         })
     });
 };

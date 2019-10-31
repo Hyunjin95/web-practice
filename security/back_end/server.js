@@ -6,7 +6,19 @@ const winston = require('winston');
 
 const app = express();
 
-app.use(cors());
+const whiteList = ['http://localhost:52330', 'http://example2.com'];
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whiteList.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+};
+
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(express.json());
 // app.use(morgan('combined'));
