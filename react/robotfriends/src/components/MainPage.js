@@ -8,6 +8,7 @@ import './MainPage.css';
 
 class MainPage extends React.Component {
     componentDidMount() {
+        console.log(process.env.REACT_APP_SAY_HI);
         this.props.onRequestRobots();
     }
 
