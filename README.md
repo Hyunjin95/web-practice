@@ -33,9 +33,9 @@ The aim of the repository is to understand how to develop web applications.
   * Injection, Access Control, Encryption
   * Logging
   * XSS, CSRF
+* Docker
 
 # What I'm going to study
-* Docker
 * Redis
 * Session, JWT
 * AWS
