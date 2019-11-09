@@ -27,7 +27,7 @@ const particlesOptions = {
 const initialState = {
   input: '',
   imageUrl: '',
-  box: {},
+  boxes: [],
   isError: false,
   loading: false,
   route: 'signin',
@@ -59,9 +59,14 @@ class App extends Component {
     });
   };
 
-  calculateFaceLocation = (response) => {
-    const bounding_box = response.outputs[0].data.regions[0].region_info.bounding_box;
+  calculateFaceLocations = (response) => {
+    const list_bounding_boxes = response.outputs[0].data.regions.map(region => region.region_info.bounding_box);
     const image = document.getElementById('inputimage');
+
+    return list_bounding_boxes.map(bounding_box => this.calculateBoundingBox(image, bounding_box));
+  };
+
+  calculateBoundingBox = (image, bounding_box) => {
     const width = Number(image.width);
     const height = Number(image.height);
 
@@ -70,25 +75,25 @@ class App extends Component {
       topRow: bounding_box.top_row * height,
       rightCol: width - bounding_box.right_col * width,
       bottomRow: height - bounding_box.bottom_row * height,
-    }    
+    }
   };
 
-  displayFaceBox = (box) => {
+  displayFaceBoxes = (boxes) => {
     this.setState({
       isError: false,
-      box: box
+      boxes
     });
   };
 
   displayError = () => {
     this.setState({
       isError: true,
-      box: {
+      boxes: [{
         leftCol: 0,
         topRow: 0,
         rightCol: 0,
         bottomRow: 0,
-      }
+      }]
     });
   }
 
@@ -123,7 +128,7 @@ class App extends Component {
             .then(count => {
               this.setState(Object.assign(this.state.user, { entries: count }));      
             });
-          this.displayFaceBox(this.calculateFaceLocation(response));
+          this.displayFaceBoxes(this.calculateFaceLocations(response));
         }
       })
       .catch(() => this.displayError())
@@ -141,7 +146,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, box, isError, loading, user } = this.state;
+    const { isSignedIn, imageUrl, route, boxes, isError, loading, user } = this.state;
     return (
       <div className="App">
         <Particles className='particles' 
@@ -156,7 +161,7 @@ class App extends Component {
                             onButtonSubmit={this.onButtonSubmit}/>
             { loading ? <Loader /> : null }
             <FaceRecognition isError={isError}
-                              box={box}
+                              boxes={boxes}
                               imageUrl={imageUrl}
                               loading={loading} />
           </div>
