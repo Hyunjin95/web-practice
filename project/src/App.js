@@ -102,7 +102,7 @@ class App extends Component {
       loading: true
     });
 
-    fetch('https://fierce-inlet-52382.herokuapp.com/imageurl', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -112,7 +112,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('https://fierce-inlet-52382.herokuapp.com/image', {
+          fetch(process.env.REACT_APP_SERVER_URL + '/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

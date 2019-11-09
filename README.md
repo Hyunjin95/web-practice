@@ -5,9 +5,7 @@ The aim of the repository is to understand how to develop web applications.
 * HTML5
   * DOM
 * Styling
-  * CSS3
-  * CSS Grid
-  * Flexbox
+  * CSS Grid, Flexbox
   * BootStrap
 * Javascript
   * ECMAScript
@@ -32,11 +30,9 @@ The aim of the repository is to understand how to develop web applications.
   * CSR vs SSR
   * Next.js
 * Security
-  * Injection
+  * Injection, Access Control, Encryption
   * Logging
   * XSS, CSRF
-  * Access Control, Encryption
-* Code Anaylsis
 
 # What I'm going to study
 * Docker
