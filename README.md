@@ -36,9 +36,9 @@ The aim of the repository is to understand how to develop web applications.
   * Logging
   * XSS, CSRF
   * Access Control, Encryption
+* Code Anaylsis
 
 # What I'm going to study
-* Code Anaylsis
 * Docker
 * Redis
 * Session, JWT

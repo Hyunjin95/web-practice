@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
@@ -7,6 +10,7 @@ const profile = require('./controllers/profile');
 const signin = require('./controllers/signin');
 const register = require('./controllers/register');
 const image = require('./controllers/image');
+
 
 const db = knex({
     client: 'pg',
