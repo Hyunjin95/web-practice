@@ -12,8 +12,6 @@ services:
     working_dir: /usr/src/project_backend
     environment:
       DATABASE_URL: postgres://lcizpawvwlafuu:ba2ecfe1f6bb6059cce271b2e8358f16b0c4c723fa1e09a9cdc8c34b93d6ad78@ec2-174-129-242-183.compute-1.amazonaws.com:5432/daindnaflf7dmf
-    links:
-      - postgres
     ports:
       - "3000:3000"
     volumes:
