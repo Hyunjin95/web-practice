@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  project_backend:
+    container_name: project_backend
+    # image: node: 12.13.0
+    build: ./
+    command: npm start
+    working_dir: /usr/src/project_backend
+    ports:
+      - "3000:3000"
+
