@@ -9,7 +9,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
-import 'tachyons';
 
 
 const particlesOptions = {
@@ -30,7 +29,7 @@ const initialState = {
   boxes: [],
   isError: false,
   loading: false,
-  route: 'signin',
+  route: 'home',
   isSignedIn: false,
   user: {
     email: '',
