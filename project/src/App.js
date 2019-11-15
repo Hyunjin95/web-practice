@@ -30,7 +30,7 @@ const initialState = {
   isError: false,
   loading: false,
   route: 'home',
-  isSignedIn: false,
+  isSignedIn: true,
   user: {
     email: '',
     id: '',
