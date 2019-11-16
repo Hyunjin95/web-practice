@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile/:id', profile.handleGetProfile(db));
+app.post('/profile/:id', profile.handleProfileUpdate(db));
 app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt));
 app.post('/imageurl', image.handleApiCall());
