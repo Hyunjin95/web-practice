@@ -25,12 +25,13 @@ class Profile extends React.Component {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ formInput: data })
-        }).then(resp => {
-            if (resp.status === 200) {
-                this.props.loadUser({ ...this.props.user, ...data });
-            }
-            this.props.toggleModal();
         })
+            .then(resp => {
+                if (resp.status === 200) {
+                    this.props.loadUser({ ...this.props.user, ...data });
+                }
+                this.props.toggleModal();
+            });
     }
 
     render() {
