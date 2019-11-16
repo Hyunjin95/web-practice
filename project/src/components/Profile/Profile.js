@@ -35,7 +35,7 @@ class Profile extends React.Component {
     }
 
     render() {
-        const { user, toggleModal } = this.props;
+        const { user, toggleModal, inputRef } = this.props;
         const { name } = this.state;
         return (
             <div className="profile-modal">
@@ -47,7 +47,11 @@ class Profile extends React.Component {
                         <p>{`Member since: ${new Date(user.joined).toLocaleDateString()}`}</p>
                         <hr />
                         <label className="mt2 fw6" htmlFor="user-name">Name:</label>
-                        <input onChange={this.onFormChange} className="pa2 ba w-100" placeholder={user.name} type="text" name="user-name" id="name" />
+                        <input
+                            ref={inputRef}
+                            onChange={this.onFormChange}
+                            className="pa2 ba w-100"
+                            placeholder={user.name} type="text" name="user-name" id="name" />
                         <div className="mt4" style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                             <button onClick={() => this.onProfileUpdate({ name })} className="b pa2 grow pointer hover-white w-40 bg-light-blue b--black-20">
                                 Save

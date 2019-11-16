@@ -13,10 +13,12 @@ class Modal extends React.Component {
 
     componentDidMount() {
         modalRoot.appendChild(this.element);
+        this.props.profileNameInputRef.current.focus();
     }
 
     componentWillUnmount() {
         modalRoot.removeChild(this.element);
+        this.props.imageLinkFormInputRef.current.focus();
     }
 
     render() {

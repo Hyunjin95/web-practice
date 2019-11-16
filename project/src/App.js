@@ -48,6 +48,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+    this.profileNameInput = React.createRef();
+    this.imageLinkFormInput = React.createRef();
   }
 
   loadUser = (data) => {
@@ -159,15 +161,15 @@ class App extends Component {
         <Particles className='particles' params={particlesOptions} />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} toggleModal={this.toggleModal} />
         { isProfileOpen &&
-          <Modal>
-            <Profile user={user} loadUser={this.loadUser} isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} />
+          <Modal imageLinkFormInputRef={this.imageLinkFormInput} profileNameInputRef={this.profileNameInput}>
+            <Profile inputRef={this.profileNameInput} user={user} loadUser={this.loadUser} isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} />
           </Modal>
         }
         { route === 'home' ?
           <div>
             <Logo />
             <Rank name={user.name} entries={user.entries} />
-            <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+            <ImageLinkForm inputRef={this.imageLinkFormInput} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
             { loading && <Loader /> }
             <FaceRecognition isError={isError} boxes={boxes} imageUrl={imageUrl} loading={loading} />
           </div>
