@@ -21,6 +21,7 @@ class Profile extends React.Component {
     }
 
     onProfileUpdate = (data) => {
+        console.log(data);
         fetch(process.env.REACT_APP_SERVER_URL + `/profile/${this.props.user.id}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -32,6 +33,15 @@ class Profile extends React.Component {
                 }
                 this.props.toggleModal();
             });
+    }
+
+    handleKeyDown = (event) => {
+        if (event.keyCode === 13) {
+            this.onProfileUpdate(this.state);
+        }
+        else if (event.keyCode === 27) {
+            this.props.toggleModal();
+        }
     }
 
     render() {
@@ -49,6 +59,7 @@ class Profile extends React.Component {
                         <label className="mt2 fw6" htmlFor="user-name">Name:</label>
                         <input
                             ref={inputRef}
+                            onKeyDown={this.handleKeyDown}
                             onChange={this.onFormChange}
                             className="pa2 ba w-100"
                             placeholder={user.name} type="text" name="user-name" id="name" />

@@ -59,6 +59,7 @@ class Register extends React.Component {
                                     name="name"
                                     id="name"
                                     onChange={this.onNameChange}
+                                    onKeyPress={(event) => event.charCode === 13 && this.onSubmitRegister()}
                                 />
                             </div>
                             <div className="mt3">
@@ -69,6 +70,7 @@ class Register extends React.Component {
                                     name="email-address"
                                     id="email-address"
                                     onChange={this.onEmailChange}
+                                    onKeyPress={(event) => event.charCode === 13 && this.onSubmitRegister()}
                                 />
                             </div>
                             <div className="mv3">
@@ -78,7 +80,8 @@ class Register extends React.Component {
                                     type="password"
                                     name="password" 
                                     id="password"
-                                    onChange={this.onPasswordChange}    
+                                    onChange={this.onPasswordChange}
+                                    onKeyPress={(event) => event.charCode === 13 && this.onSubmitRegister()}
                                 />
                             </div>
                         </fieldset>

@@ -14,6 +14,7 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit, inputRef }) => {
                         ref={inputRef}
                         className="f4 pa2 w-70 center"
                         type='tex'
+                        onKeyPress={(event) => event.charCode === 13 && onButtonSubmit()}
                         onChange={onInputChange} />
                     <button className="w-30 grow f4 link ph3 pv2 dib white bg-light-purple" onClick={onButtonSubmit}>Detect</button>
                 </div>
