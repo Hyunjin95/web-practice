@@ -12,9 +12,7 @@ class ProfileIcon extends React.Component {
     }
 
     toggle = () => {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
+        this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
     }
 
     render() {
@@ -25,7 +23,7 @@ class ProfileIcon extends React.Component {
                         <img src="http://tachyons.io/img/logo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
                     </DropdownToggle>
                     <DropdownMenu right className="b--transparent shadow-5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                        <DropdownItem>View Profile</DropdownItem>
+                        <DropdownItem onClick={() => this.props.toggleModal()}>View Profile</DropdownItem>
                         <DropdownItem onClick={() => this.props.onRouteChange('signout')}>Signout</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>

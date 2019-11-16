@@ -8,6 +8,9 @@ import Loader from './components/Loader/Loader';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import Modal from './components/Modal/Modal';
+import Profile from './components/Profile/Profile';
+
 import './App.css';
 
 
@@ -31,6 +34,7 @@ const initialState = {
   loading: false,
   route: 'home',
   isSignedIn: true,
+  isProfileOpen: false,
   user: {
     email: '',
     id: '',
@@ -56,14 +60,14 @@ class App extends Component {
         joined: data.joined
       }
     });
-  };
+  }
 
   calculateFaceLocations = (response) => {
     const list_bounding_boxes = response.outputs[0].data.regions.map(region => region.region_info.bounding_box);
     const image = document.getElementById('inputimage');
 
     return list_bounding_boxes.map(bounding_box => this.calculateBoundingBox(image, bounding_box));
-  };
+  }
 
   calculateBoundingBox = (image, bounding_box) => {
     const width = Number(image.width);
@@ -75,14 +79,14 @@ class App extends Component {
       rightCol: width - bounding_box.right_col * width,
       bottomRow: height - bounding_box.bottom_row * height,
     }
-  };
+  }
 
   displayFaceBoxes = (boxes) => {
     this.setState({
       isError: false,
       boxes
     });
-  };
+  }
 
   displayError = () => {
     this.setState({
@@ -142,27 +146,30 @@ class App extends Component {
       this.setState({isSignedIn: true})
     }
     this.setState({route});
-  };
+  }
+
+  toggleModal = () => {
+    this.setState(prevState => ({ ...prevState, isProfileOpen: !prevState.isProfileOpen }));
+  }
 
   render() {
-    const { isSignedIn, imageUrl, route, boxes, isError, loading, user } = this.state;
+    const { isSignedIn, isProfileOpen, imageUrl, route, boxes, isError, loading, user } = this.state;
     return (
       <div className="App">
-        <Particles className='particles' 
-          params={particlesOptions}
-        />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        <Particles className='particles' params={particlesOptions} />
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} toggleModal={this.toggleModal} />
+        { isProfileOpen &&
+          <Modal>
+            <Profile isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} />
+          </Modal>
+        }
         { route === 'home' ?
           <div>
             <Logo />
             <Rank name={user.name} entries={user.entries} />
-            <ImageLinkForm onInputChange={this.onInputChange}
-                            onButtonSubmit={this.onButtonSubmit}/>
-            { loading ? <Loader /> : null }
-            <FaceRecognition isError={isError}
-                              boxes={boxes}
-                              imageUrl={imageUrl}
-                              loading={loading} />
+            <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+            { loading && <Loader /> }
+            <FaceRecognition isError={isError} boxes={boxes} imageUrl={imageUrl} loading={loading} />
           </div>
           : route === 'signin' || route === 'signout' ?
           <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
