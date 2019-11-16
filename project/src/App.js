@@ -32,8 +32,8 @@ const initialState = {
   boxes: [],
   isError: false,
   loading: false,
-  route: 'home',
-  isSignedIn: true,
+  route: 'signin',
+  isSignedIn: false,
   isProfileOpen: false,
   user: {
     email: '',
