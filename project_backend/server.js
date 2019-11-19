@@ -26,13 +26,10 @@ app.use(express.json());
 app.use(cors());
 
 
-app.get('/', (req, res) => {
-    res.sendStatus(200);
-});
-
+app.get('/', (req, res) => res.sendStatus(200));
 app.get('/profile/:id', profile.handleGetProfile(db));
 app.post('/profile/:id', profile.handleProfileUpdate(db));
-app.post('/signin', signin.handleSignin(db, bcrypt));
+app.post('/signin', signin.signinAuthentication(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt));
 app.post('/imageurl', image.handleApiCall());
 app.put('/image', image.handleImage(db));
