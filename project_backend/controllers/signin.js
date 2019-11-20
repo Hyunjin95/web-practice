@@ -7,7 +7,7 @@ const redisClient = redis.createClient(process.env.REDIS_URI);
 const signinAuthentication = (db, bcrypt) => (req, res) => {
     const { authorization } = req.headers;
     return authorization ?
-        getAuthTokenId()
+        getAuthTokenId(req, res)
         :
         handleSignin(db, bcrypt, req)
             .then(data => {
@@ -22,8 +22,16 @@ const signinAuthentication = (db, bcrypt) => (req, res) => {
             .catch(err => res.status(400).json(err));
 };
 
-const getAuthTokenId = () => {
-    return true;
+const getAuthTokenId = (req, res) => {
+    const { authorization } = req.headers;
+    return redisClient.get(authorization, (err, reply) => {
+        if (err || !reply) {
+            return res.status(400).json('Unauthorized');
+        }
+        return res.json({
+            id: reply
+        });
+    });
 };
 
 const createSessions = (user) => {
