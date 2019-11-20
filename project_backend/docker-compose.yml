@@ -11,7 +11,8 @@ services:
     command: npm start
     working_dir: /usr/src/project_backend
     environment:
-      DATABASE_URL: postgres://lcizpawvwlafuu:ba2ecfe1f6bb6059cce271b2e8358f16b0c4c723fa1e09a9cdc8c34b93d6ad78@ec2-174-129-242-183.compute-1.amazonaws.com:5432/daindnaflf7dmf
+      POSTGRES_URI: postgres://lcizpawvwlafuu:ba2ecfe1f6bb6059cce271b2e8358f16b0c4c723fa1e09a9cdc8c34b93d6ad78@ec2-174-129-242-183.compute-1.amazonaws.com:5432/daindnaflf7dmf
+      REDIS_URI: redis://redis:6379
     ports:
       - "3000:3000"
     volumes:
@@ -28,3 +29,9 @@ services:
       POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
+  
+  # Redis
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
