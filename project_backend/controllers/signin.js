@@ -1,14 +1,38 @@
+const jwt = require('jsonwebtoken');
+
+
 const signinAuthentication = (db, bcrypt) => (req, res) => {
     const { authorization } = req.headers;
-    return authorization ? getAuthTokenId() :
+    return authorization ?
+        getAuthTokenId()
+        :
         handleSignin(db, bcrypt, req)
-            .then(data => res.json(data))
+            .then(data => {
+                if (data.id && data.email) {
+                    return createSessions(data)
+                }
+                else {
+                    return Promise.reject(data);
+                }
+            })
+            .then(session => res.json(session))
             .catch(err => res.status(400).json(err));
 };
 
 const getAuthTokenId = () => {
     return true;
-}
+};
+
+const createSessions = (user) => {
+    const { email, id } = user;
+    const token = signToken(email);
+    return { success: 'true', userId: id, token };
+};
+
+const signToken = (email) => {
+    const jwtPayload = { email };
+    return jwt.sign(jwtPayload, process.env.JWT_KEY, { expiresIn: '2 days' });
+};
 
 const handleSignin = (db, bcrypt, req) => {
     const { email, password } = req.body;
