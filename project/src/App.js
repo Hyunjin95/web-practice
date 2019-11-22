@@ -52,6 +52,26 @@ class App extends Component {
     this.imageLinkFormInput = React.createRef();
   }
 
+  componentDidMount() {
+    const token = window.sessionStorage.getItem('token');
+    if (token) {
+      fetch(process.env.REACT_APP_SERVER_URL + '/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.id) {
+            console.log('succeeded to get token');
+          }
+        })
+        .catch(() => console.log('fail to get token'))
+    }
+  }
+
   loadUser = (data) => {
     this.setState({
       user: {
