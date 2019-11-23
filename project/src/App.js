@@ -63,12 +63,27 @@ class App extends Component {
         }
       })
         .then(res => res.json())
-        .then(data => {
-          if (data && data.id) {
-            console.log('succeeded to get token');
-          }
-        })
+        .then(data => this.getUserProfile(data.id, token))
         .catch(() => console.log('fail to get token'))
+    }
+  }
+
+  getUserProfile = (id, token) => {
+    if (id) {
+      fetch(process.env.REACT_APP_SERVER_URL + `/profile/${id}`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+        .then(res => res.json())
+        .then(user => {
+          if (user && user.email) {
+            this.loadUser(user);
+            this.onRouteChange('home');
+          }
+        });
     }
   }
 
@@ -194,7 +209,7 @@ class App extends Component {
             <FaceRecognition isError={isError} boxes={boxes} imageUrl={imageUrl} loading={loading} />
           </div>
           : route === 'signin' || route === 'signout' ?
-          <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+          <SignIn onRouteChange={this.onRouteChange} getUserProfile={this.getUserProfile} />
           :
           <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         }
