@@ -100,10 +100,12 @@ class App extends Component {
   }
 
   calculateFaceLocations = (response) => {
-    const list_bounding_boxes = response.outputs[0].data.regions.map(region => region.region_info.bounding_box);
-    const image = document.getElementById('inputimage');
+    if (response && response.outputs) {
+      const list_bounding_boxes = response.outputs[0].data.regions.map(region => region.region_info.bounding_box);
+      const image = document.getElementById('inputimage');
 
-    return list_bounding_boxes.map(bounding_box => this.calculateBoundingBox(image, bounding_box));
+      return list_bounding_boxes.map(bounding_box => this.calculateBoundingBox(image, bounding_box));
+    }
   }
 
   calculateBoundingBox = (image, bounding_box) => {
@@ -119,10 +121,12 @@ class App extends Component {
   }
 
   displayFaceBoxes = (boxes) => {
-    this.setState({
-      isError: false,
-      boxes
-    });
+    if (boxes) {
+      this.setState({
+        isError: false,
+        boxes
+      });
+    }
   }
 
   displayError = () => {
@@ -149,7 +153,10 @@ class App extends Component {
 
     fetch(process.env.REACT_APP_SERVER_URL + '/imageurl', {
       method: 'post',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
       body: JSON.stringify({
         input: this.state.input
       })
@@ -159,7 +166,10 @@ class App extends Component {
         if (response) {
           fetch(process.env.REACT_APP_SERVER_URL + '/image', {
             method: 'put',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify({
               id: this.state.user.id
             })

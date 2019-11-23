@@ -24,7 +24,10 @@ class Profile extends React.Component {
         console.log(data);
         fetch(process.env.REACT_APP_SERVER_URL + `/profile/${this.props.user.id}`, {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify({ formInput: data })
         })
             .then(resp => {
