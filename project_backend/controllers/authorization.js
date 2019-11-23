@@ -12,7 +12,6 @@ const requireAuth = (req, res, next) => {
         if(err || !reply) {
             return res.status(401).json('Unauthorized access');
         }
-        console.log('You can pass');
         return next();
     })
 };

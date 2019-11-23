@@ -13,6 +13,7 @@ module.exports = {
 
 const profile = require('./controllers/profile');
 const signin = require('./controllers/signin');
+const signout = require('./controllers/signout');
 const register = require('./controllers/register');
 const image = require('./controllers/image');
 const auth = require('./controllers/authorization');
@@ -35,6 +36,7 @@ app.use(cors());
 app.get('/', (req, res) => res.sendStatus(200));
 app.post('/register', register.handleRegister(db, bcrypt));
 app.post('/signin', signin.signinAuthentication(db, bcrypt));
+app.post('/signout', auth.requireAuth, signout.handleSignout());
 app.get('/profile/:id', auth.requireAuth, profile.handleGetProfile(db));
 app.post('/profile/:id', auth.requireAuth, profile.handleProfileUpdate(db));
 app.post('/imageurl', auth.requireAuth, image.handleApiCall());

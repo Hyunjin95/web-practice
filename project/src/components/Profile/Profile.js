@@ -31,11 +31,12 @@ class Profile extends React.Component {
             body: JSON.stringify({ formInput: data })
         })
             .then(resp => {
-                if (resp.status === 200) {
+                if (resp.status === 200 || resp.status === 304) {
                     this.props.loadUser({ ...this.props.user, ...data });
+                    this.props.toggleModal();
                 }
-                this.props.toggleModal();
-            });
+            })
+            .catch(() => console.log('Unable to update user profile'));
     }
 
     handleKeyDown = (event) => {
