@@ -10,4 +10,4 @@ To deploy a subdirectory to Heroku, you have to run the following (in the projec
 
 So this project might be deployed by running (assuming HEROKU_REMOTE == heroku_fe):
 
-`git subtree push ---prefix project heroku_fe master`
+`git subtree push --prefix project heroku_fe master`
