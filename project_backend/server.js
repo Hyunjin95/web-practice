@@ -8,7 +8,7 @@ const knex = require('knex');
 const redis = require('redis');
 
 module.exports = {
-    redisClient: redis.createClient(process.env.REDIS_URI)
+    redisClient: redis.createClient(process.env.REDIS_URL)
 };
 
 const profile = require('./controllers/profile');
@@ -22,7 +22,7 @@ const auth = require('./controllers/authorization');
 const db = knex({
     client: 'pg',
     connection: {
-        connectionString: process.env.POSTGRES_URI,
+        connectionString: process.env.POSTGRES_URL,
         ssl: true
     }
 });
