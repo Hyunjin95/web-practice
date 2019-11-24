@@ -187,22 +187,26 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      fetch(process.env.REACT_APP_SERVER_URL + '/signout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': window.sessionStorage.getItem('token')
-        },
-        body: JSON.stringify({})
-      })
-        .then(res => res.json())
-        .then(() => this.setState(initialState))
-        .catch(() => console.log('Failed to sign out'));
+      this.handleSignout();
     }
     else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
     this.setState({route});
+  }
+
+  handleSignout = () => {
+    fetch(process.env.REACT_APP_SERVER_URL + '/signout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({})
+    })
+      .then(res => res.json())
+      .then(() => this.setState(initialState))
+      .catch(() => console.log('Failed to sign out'));
   }
 
   toggleModal = () => {
