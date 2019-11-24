@@ -38,9 +38,10 @@ All the contents are based on the lectures, [The Complete Web Developer](https:/
 * Docker
 * Session
   * Redis, JWT
+* AWS
+  * Serverless
 
 # What I'm going to study
-* AWS
 * Performance
   * CDN
   * Caching
