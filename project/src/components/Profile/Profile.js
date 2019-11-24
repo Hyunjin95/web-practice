@@ -1,5 +1,6 @@
 import React from 'react';
 import './Profile.css';
+import profileImage from './teemo.jpg';
 
 
 class Profile extends React.Component {
@@ -55,7 +56,7 @@ class Profile extends React.Component {
             <div className="profile-modal">
                 <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center bg-white">
                     <main className="pa4 black-80 w-80">
-                        <img src="http://tachyons.io/img/logo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
+                        <img src={profileImage} className="br-100 ba h3 w3 dib" alt="avatar" />
                         <h1>{this.state.name}</h1>
                         <h4>{`Images submitted: ${user.entries}`}</h4>
                         <p>{`Member since: ${new Date(user.joined).toLocaleDateString()}`}</p>
