@@ -1,6 +1,6 @@
 version: '3.7'
 
-# Currently, the server is now hosted on Heroku, so environment variables about Postgres are not needed.
+# Currently, the server is now hosted on Heroku, so environment variables about Postgres and Redis are actually not needed.
 # I added them just for practice.
 
 services:
