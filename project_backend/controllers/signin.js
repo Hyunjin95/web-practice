@@ -74,5 +74,6 @@ const handleSignin = (db, bcrypt, req) => {
 };
 
 module.exports = {
-    signinAuthentication: signinAuthentication
+    signinAuthentication: signinAuthentication,
+    createSessions: createSessions
 };

@@ -5,8 +5,7 @@ WORKDIR /usr/src/project_backend
 
 COPY ./ ./
 
+RUN apt-get update
 RUN npm install
-
-
 
 CMD ["/bin/bash"]

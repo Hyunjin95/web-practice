@@ -34,7 +34,8 @@ class SignIn extends React.Component {
                     this.saveAuthToTokenInSession(data.token);
                     this.props.getUserProfile(data.userId, data.token);
                 }
-            });
+            })
+            .catch(() => console.log('Failed to sign in'));
     }
 
     saveAuthToTokenInSession = (token) => {

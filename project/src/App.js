@@ -205,7 +205,10 @@ class App extends Component {
       body: JSON.stringify({})
     })
       .then(res => res.json())
-      .then(() => this.setState(initialState))
+      .then(() => {
+        window.sessionStorage.removeItem('token');
+        this.setState(initialState);
+      })
       .catch(() => console.log('Failed to sign out'));
   }
 
@@ -235,7 +238,7 @@ class App extends Component {
           : route === 'signin' || route === 'signout' ?
           <SignIn onRouteChange={this.onRouteChange} getUserProfile={this.getUserProfile} />
           :
-          <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+          <Register onRouteChange={this.onRouteChange} getUserProfile={this.getUserProfile} />
         }
       </div>
     );
