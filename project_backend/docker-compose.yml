@@ -35,3 +35,4 @@ services:
     image: redis
     ports:
       - "21309:21309"
+      - "6379:6379"
