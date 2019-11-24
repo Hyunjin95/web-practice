@@ -34,10 +34,10 @@ The aim of the repository is to understand how to develop web applications.
   * Logging
   * XSS, CSRF
 * Docker
+* Session
+  * Redis, JWT
 
 # What I'm going to study
-* Redis
-* Session, JWT
 * AWS
 * Performance
   * CDN
