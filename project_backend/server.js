@@ -5,10 +5,9 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
-const redis = require('redis');
 
 module.exports = {
-    redisClient: redis.createClient(process.env.REDIS_URL)
+    redisClient: require('redis').createClient(process.env.REDIS_URL)
 };
 
 const profile = require('./controllers/profile');

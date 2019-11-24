@@ -12,7 +12,7 @@ services:
     working_dir: /usr/src/project_backend
     environment:
       POSTGRES_URL: postgres://lcizpawvwlafuu:ba2ecfe1f6bb6059cce271b2e8358f16b0c4c723fa1e09a9cdc8c34b93d6ad78@ec2-174-129-242-183.compute-1.amazonaws.com:5432/daindnaflf7dmf
-      REDIS_URL: redis://redis:6379
+      REDIS_URL: redis://h:p6337219d7577dfb5a63a55471b3fab52f9af414823b7b9bc9374bd7610858918@ec2-54-89-126-62.compute-1.amazonaws.com:21309
     ports:
       - "3000:3000"
     volumes:
@@ -34,4 +34,4 @@ services:
   redis:
     image: redis
     ports:
-      - "6379:6379"
+      - "21309:21309"
