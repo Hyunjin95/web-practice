@@ -64,7 +64,7 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(data => this.getUserProfile(data.id, token))
-        .catch(() => console.log('fail to get token'))
+        .catch((err) => console.log(err))
     }
   }
 
@@ -83,7 +83,8 @@ class App extends Component {
             this.loadUser(user);
             this.onRouteChange('home');
           }
-        });
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -177,11 +178,14 @@ class App extends Component {
             .then(res => res.json())
             .then(count => {
               this.setState(Object.assign(this.state.user, { entries: count }));      
-            });
+            })
           this.displayFaceBoxes(this.calculateFaceLocations(response));
         }
       })
-      .catch(() => this.displayError())
+      .catch((err) => {
+        console.log(err);
+        return this.displayError();
+      })
       .finally(() => this.setState({ loading: false }));
   }
 
@@ -209,7 +213,7 @@ class App extends Component {
         window.sessionStorage.removeItem('token');
         this.setState(initialState);
       })
-      .catch(() => console.log('Failed to sign out'));
+      .catch((err) => console.log(err));
   }
 
   toggleModal = () => {

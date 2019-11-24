@@ -8,7 +8,7 @@ const handleApiCall = () => (req, res) => {
     app.models.initModel({id: Clarifai.FACE_DETECT_MODEL})
         .then(faceDetectModel => faceDetectModel.predict(input))
         .then(data => res.json(data))
-        .catch(() => res.status(400).json('Unable to work with API'));
+        .catch(err => res.status(400).json(err));
 }
 
 const handleImage = db => (req, res) => {
@@ -17,7 +17,7 @@ const handleImage = db => (req, res) => {
     db('users').where('id', '=', id).increment('entries', 1)
         .returning('entries')
         .then(entries => res.json(entries[0]))
-        .catch(() => res.status(400).json('Unable to get entries'));
+        .catch(err => res.status(400).json(err));
 };
 
 

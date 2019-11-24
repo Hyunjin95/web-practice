@@ -41,7 +41,7 @@ class Register extends React.Component {
                     this.props.getUserProfile(data.userId, data.token);
                 }
             })
-            .catch(() => console.log('Failed to register'));
+            .catch((err) => console.log(err));
     }
     
     saveAuthToTokenInSession = (token) => {

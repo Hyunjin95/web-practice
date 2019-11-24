@@ -10,7 +10,7 @@ const handleGetProfile = db => (req, res) => {
                 res.status(400).json('Not found')
             }
         })
-        .catch(() => res.status(400).json('Error getting user'));
+        .catch((err) => res.status(400).json(err));
 };
 
 const handleProfileUpdate = db => (req, res) => {
@@ -25,7 +25,7 @@ const handleProfileUpdate = db => (req, res) => {
             res.status(400).json('fail to update');
         }
     })
-    .catch(() => res.status(400).json('error updating user'));
+    .catch((err) => res.status(400).json(err));
 };
 
 

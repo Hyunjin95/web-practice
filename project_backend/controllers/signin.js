@@ -39,7 +39,7 @@ const createSessions = (user) => {
         .then(() => {
             return { success: 'true', userId: id, token };
         })
-        .catch(() => console.log('Error occured'));
+        .catch((err) => console.log(err));
 };
 
 const signToken = (email) => {
@@ -64,13 +64,13 @@ const handleSignin = (db, bcrypt, req) => {
             if (isValid) {
                 return db.select('*').from('users').where('email', '=', email)
                     .then(user => user[0])
-                    .catch(() => Promise.reject('Unable to get user'));
+                    .catch((err) => Promise.reject(err));
             }
             else {
                 Promise.reject('Wrong credentials');
             }
         })
-        .catch(() => Promise.reject('Wrong credentials'));
+        .catch((err) => Promise.reject(err));
 };
 
 module.exports = {

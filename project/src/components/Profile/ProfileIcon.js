@@ -20,7 +20,7 @@ class ProfileIcon extends React.Component {
             <div className='pa4 tc'>
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} style={{ cursor: 'pointer' }}>
                     <DropdownToggle tag="span" data-toggle="dropdown" aria-expanded={this.state.dropdownOpen}>
-                        <img src="http://tachyons.io/img/logo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
+                        <img src="./teemo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
                     </DropdownToggle>
                     <DropdownMenu right className="b--transparent shadow-5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
                         <DropdownItem onClick={() => this.props.toggleModal()}>View Profile</DropdownItem>

@@ -36,7 +36,7 @@ class Profile extends React.Component {
                     this.props.toggleModal();
                 }
             })
-            .catch(() => console.log('Unable to update user profile'));
+            .catch((err) => console.log(err));
     }
 
     handleKeyDown = (event) => {
