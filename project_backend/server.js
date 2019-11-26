@@ -5,10 +5,9 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
+const compression = require('compression');
+module.exports.redisClient = require('redis').createClient(process.env.REDIS_URL);
 
-module.exports = {
-    redisClient: require('redis').createClient(process.env.REDIS_URL)
-};
 
 const profile = require('./controllers/profile');
 const signin = require('./controllers/signin');
@@ -30,6 +29,7 @@ const db = knex({
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(compression());
 
 
 app.get('/', (req, res) => res.sendStatus(200));
