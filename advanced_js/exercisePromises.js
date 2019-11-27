@@ -23,9 +23,22 @@ promise_func().then(console.log);
 // the above promise shorter with Promise.resolve() and console loggin "success"
 const promise2 = Promise.resolve(
   setTimeout(() => {
-    console.log("success");
+    console.log("success2");
   }, 4000)
 );
+
+const promise_func2 = (num) => {
+  if (num === 1) {
+    return Promise.resolve(true);
+  }
+  else {
+    return Promise.resolve(false);
+  }
+};
+
+promise2.then(console.log);
+promise_func2(1).then(console.log);
+promise_func2(2).then(console.log);
 
 
 // #4) Catch this error and console log 'Ooops something went wrong'
