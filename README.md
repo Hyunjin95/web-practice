@@ -11,7 +11,7 @@ All the contents are based on the lectures, [The Complete Web Developer](https:/
 * npm
 * React, Redux
 * Server
-  * CSR, SSR => Express.js, Next.js
+  * Express.js, Next.js
   * RESTful API
   * Session, JWT
   * Serverless
@@ -20,6 +20,6 @@ All the contents are based on the lectures, [The Complete Web Developer](https:/
 * Production, Deployment
   * Webpack, Parcel
   * Docker
-  * CDN, Caching, Load Balancing (Nginx)
+  * CDN, Caching, Nginx
 * Testing
   * Jest, Enzyme (for React)
