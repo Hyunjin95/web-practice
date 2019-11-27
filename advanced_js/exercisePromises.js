@@ -31,6 +31,9 @@ const promise_func2 = (num) => {
   if (num === 1) {
     return Promise.resolve(true);
   }
+  else if (num === 0) {
+    return Promise.reject("0 is not a natural number");
+  }
   else {
     return Promise.resolve(false);
   }
@@ -39,21 +42,29 @@ const promise_func2 = (num) => {
 promise2.then(console.log);
 promise_func2(1).then(console.log);
 promise_func2(2).then(console.log);
+promise_func2(0).catch((err) => console.log(err));
 
 const printNumber = async () => {
-  const sayTrue = await promise_func2(1);
-  const sayFalse = await promise_func2(2);
-
-  console.log("true", sayTrue);
-  console.log("false", sayFalse);
+  try {
+    const sayTrue = await promise_func2(1);
+    const sayFalse = await promise_func2(2);
+    const whathappens = await promise_func2(0);
+  
+    console.log("true", sayTrue);
+    console.log("false", sayFalse);
+    console.log(whathappens);
+  }
+  catch (e) {
+    console.log(e);
+  }
 };
 
 printNumber();
 
 
 // #4) Catch this error and console log 'Ooops something went wrong'
-Promise.reject('failed')
-  .catch(console.log("Oops something went wrong;"));
+// Promise.reject('failed')
+//   .catch(console.log("Oops something went wrong;"));
 
 // #5) Use Promise.all to fetch all of these people from Star Wars (SWAPI) at the same time.
 // Console.log the output and make sure it has a catch block as well.
