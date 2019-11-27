@@ -40,6 +40,16 @@ promise2.then(console.log);
 promise_func2(1).then(console.log);
 promise_func2(2).then(console.log);
 
+const printNumber = async () => {
+  const sayTrue = await promise_func2(1);
+  const sayFalse = await promise_func2(2);
+
+  console.log("true", sayTrue);
+  console.log("false", sayFalse);
+};
+
+printNumber();
+
 
 // #4) Catch this error and console log 'Ooops something went wrong'
 Promise.reject('failed')
