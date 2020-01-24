@@ -11,6 +11,8 @@ npm run export
 
 Then create a `.nojekyll` file into the `out` folder.
 
+Next, run these:
+
 ```
 git add out/
 git commit -m "MESSAGE"
