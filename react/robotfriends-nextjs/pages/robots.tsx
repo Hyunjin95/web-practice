@@ -23,29 +23,33 @@ interface StatelessPage<P> extends React.FC<P> {
 const Robots: StatelessPage<RobotProps> = ({
   isError = false,
   robot,
-}: RobotProps) => (
-  <Layout prefix={prefix}>
-    <>
-      <ErrorBoundary isError={isError}>
-        <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
-          <img
-            alt="_robots_"
-            src={`https://robohash.org/${robot.id}?size=200x200`}
-          />
-          <div>
-            <h2>{robot.name}</h2>
-            <p>{robot.email}</p>
+}: RobotProps) => {
+  const pf = prefix !== '' ? '/web-practice' : '/';
+
+  return (
+    <Layout prefix={prefix}>
+      <>
+        <ErrorBoundary isError={isError}>
+          <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
+            <img
+              alt="_robots_"
+              src={`https://robohash.org/${robot.id}?size=200x200`}
+            />
+            <div>
+              <h2>{robot.name}</h2>
+              <p>{robot.email}</p>
+            </div>
           </div>
-        </div>
-      </ErrorBoundary>
-      <Link href="/">
-        <button type="button" className="tc">
-          Back
-        </button>
-      </Link>
-    </>
-  </Layout>
-);
+        </ErrorBoundary>
+        <Link href={pf}>
+          <button type="button" className="tc">
+            Back
+          </button>
+        </Link>
+      </>
+    </Layout>
+  );
+};
 
 Robots.getInitialProps = async (context: Context): Promise<RobotProps> => {
   const { id } = context.query;
