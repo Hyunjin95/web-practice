@@ -13,28 +13,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _pages_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/index */ "./pages/index.tsx");
 var _jsxFileName = "C:\\Users\\Hyunjin\\Desktop\\Programming\\web-practice\\react\\robotfriends-nextjs\\components\\Card.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 var Card = function Card(props) {
   var name = props.name,
       email = props.email,
       id = props.id;
+  var pf = _pages_index__WEBPACK_IMPORTED_MODULE_2__["prefix"] !== '' ? 'web-practice' : '';
   return __jsx("div", {
     className: "tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 8
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/robots?id=".concat(id),
-    as: "/robots/".concat(id),
+    href: "".concat(pf, "/robots?id=").concat(id),
+    as: "".concat(pf, "/robots/").concat(id),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     },
     __self: this
   }, __jsx("button", {
@@ -42,7 +45,7 @@ var Card = function Card(props) {
     type: "button",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 10
     },
     __self: this
   }, __jsx("img", {
@@ -50,25 +53,25 @@ var Card = function Card(props) {
     src: "https://robohash.org/".concat(id, "?size=200x200"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     },
     __self: this
   }), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     },
     __self: this
   }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 13
     },
     __self: this
   }, name), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     },
     __self: this
   }, email)))));
@@ -335,33 +338,34 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Layout = function Layout(_ref) {
-  var children = _ref.children;
+  var prefix = _ref.prefix,
+      children = _ref.children;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    },
-    __self: this
-  }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     },
     __self: this
-  }, "RobotFriends"), __jsx("link", {
-    rel: "icon",
-    href: "/favicon.ico",
+  }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 12
     },
     __self: this
-  })), children, __jsx("link", {
-    rel: "stylesheet",
-    href: "/static/index.css",
+  }, "RobotFriends"), __jsx("link", {
+    rel: "icon",
+    href: "".concat(prefix, "/favicon.ico"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
+    },
+    __self: this
+  })), children, __jsx("link", {
+    rel: "stylesheet",
+    href: "".concat(prefix, "/static/index.css"),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
     },
     __self: this
   }), __jsx("link", {
@@ -369,7 +373,7 @@ var Layout = function Layout(_ref) {
     href: "https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 17
     },
     __self: this
   }));
@@ -12376,11 +12380,12 @@ if (!self.fetch) {
 /*!*************************!*\
   !*** ./pages/index.tsx ***!
   \*************************/
-/*! exports provided: default */
+/*! exports provided: prefix, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
@@ -12398,6 +12403,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
+// eslint-disable-next-line
+var prefix =  false ? undefined : '';
 
 var Index = function Index(_ref) {
   var _ref$robots = _ref.robots,
@@ -12405,9 +12412,10 @@ var Index = function Index(_ref) {
       _ref$isError = _ref.isError,
       isError = _ref$isError === void 0 ? false : _ref$isError;
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    prefix: prefix,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 31
     },
     __self: this
   }, __jsx(_components_MainPage__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -12415,7 +12423,7 @@ var Index = function Index(_ref) {
     isError: isError,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 32
     },
     __self: this
   }));
