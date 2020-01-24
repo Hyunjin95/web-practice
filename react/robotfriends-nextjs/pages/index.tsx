@@ -14,6 +14,12 @@ export interface AppProps {
   isError: boolean;
 }
 
+// eslint-disable-next-line
+export const prefix =
+  process.env.NODE_ENV === 'production'
+    ? 'https://hyunjin95.github.io/web-practice'
+    : '';
+
 export interface StatelessPage<P> extends React.FC<P> {
   getInitialProps?: () => Promise<P>;
 }
@@ -22,7 +28,7 @@ const Index: StatelessPage<AppProps> = ({
   robots = [],
   isError = false,
 }: AppProps): JSX.Element => (
-  <Layout>
+  <Layout prefix={prefix}>
     <MainPage robots={robots} isError={isError} />
   </Layout>
 );

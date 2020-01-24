@@ -3,7 +3,7 @@ import Link from 'next/link';
 import fetch from 'isomorphic-fetch';
 import Layout from '../components/Layout';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { Robot } from './index';
+import { Robot, prefix } from './index';
 
 interface RobotProps {
   robot: Robot;
@@ -24,7 +24,7 @@ const Robots: StatelessPage<RobotProps> = ({
   isError = false,
   robot,
 }: RobotProps) => (
-  <Layout>
+  <Layout prefix={prefix}>
     <>
       <ErrorBoundary isError={isError}>
         <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
