@@ -1,69 +1,73 @@
 import React from 'react';
-import Link from "next/link";
-import fetch from "isomorphic-fetch";
-import Layout from "../components/Layout";
+import Link from 'next/link';
+import fetch from 'isomorphic-fetch';
+import Layout from '../components/Layout';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { IRobot } from './index';
+import { Robot } from './index';
 
-interface IRobotProps {
-    robot: IRobot,
-    isError: boolean
-};
-
-interface IContext {
-    query: {
-        id: number
-    }
-};
-
-interface StatelessPage<P> extends React.FC<P> {
-    getInitialProps?: (context: IContext) => Promise<P>
-};
-
-const Robots: StatelessPage<IRobotProps> = (props: IRobotProps) => {
-    return (
-        <Layout>
-            <React.Fragment>
-                <ErrorBoundary isError={props.isError}>
-                    <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
-                        <img alt="_robots_" src={`https://robohash.org/${props.robot.id}?size=200x200`}/>
-                        <div>
-                            <h2>{props.robot.name}</h2>
-                            <p>{props.robot.email}</p>
-                        </div>
-                    </div>
-                </ErrorBoundary>
-                <Link href='/'>
-                    <button className='tc'>Back</button>
-                </Link>
-            </React.Fragment>
-        </Layout>
-    );
+interface RobotProps {
+  robot: Robot;
+  isError: boolean;
 }
 
-Robots.getInitialProps = async (context: IContext): Promise<IRobotProps> => {
-    const { id } = context.query;
+interface Context {
+  query: {
+    id: number;
+  };
+}
 
-    let isError = false;
-    let robot: IRobot = {
-        email: 'abc@abc.com',
-        id: 1,
-        name: 'abc'
-    };
+interface StatelessPage<P> extends React.FC<P> {
+  getInitialProps?: (context: Context) => Promise<P>;
+}
 
-    try {
-        const req = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
-        robot = await req.json();  
-    }
-    catch (err) {
-        isError = true;
-    }
-    finally {
-        return {
-            robot,
-            isError
-        };
-    }
+const Robots: StatelessPage<RobotProps> = ({
+  isError = false,
+  robot,
+}: RobotProps) => (
+  <Layout>
+    <>
+      <ErrorBoundary isError={isError}>
+        <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
+          <img
+            alt="_robots_"
+            src={`https://robohash.org/${robot.id}?size=200x200`}
+          />
+          <div>
+            <h2>{robot.name}</h2>
+            <p>{robot.email}</p>
+          </div>
+        </div>
+      </ErrorBoundary>
+      <Link href="/">
+        <button type="button" className="tc">
+          Back
+        </button>
+      </Link>
+    </>
+  </Layout>
+);
+
+Robots.getInitialProps = async (context: Context): Promise<RobotProps> => {
+  const { id } = context.query;
+
+  let isError = false;
+  let robot: Robot = {
+    email: 'abc@abc.com',
+    id: 1,
+    name: 'abc',
+  };
+
+  try {
+    const req = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+    robot = await req.json();
+  } catch (err) {
+    isError = true;
+  }
+
+  return {
+    robot,
+    isError,
+  };
 };
 
 export default Robots;
