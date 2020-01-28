@@ -13,7 +13,7 @@ Then create a `.nojekyll` file into the `out` folder.
 
 Next, run these:
 
-```
+```shell
 git add out/
 git commit -m "MESSAGE"
 # This command should be run from the top of the git repository.
