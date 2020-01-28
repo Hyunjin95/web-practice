@@ -13,39 +13,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _pages_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/index */ "./pages/index.tsx");
 var _jsxFileName = "C:\\Users\\Hyunjin\\Desktop\\Programming\\web-practice\\react\\robotfriends-nextjs\\components\\Card.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
 
 
 var Card = function Card(props) {
   var name = props.name,
       email = props.email,
       id = props.id;
-  var pf = _pages_index__WEBPACK_IMPORTED_MODULE_2__["prefix"] !== '' ? 'web-practice' : '';
   return __jsx("div", {
     className: "tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/robots?id=".concat(id),
+    as: "robots/".concat(id),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 8
     },
     __self: this
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "".concat(pf, "/robots?id=").concat(id),
-    as: "".concat(pf, "/robots/").concat(id),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
   }, __jsx("button", {
+    style: {
+      cursor: 'pointer'
+    },
     className: "no-underline",
     type: "button",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 9
     },
     __self: this
   }, __jsx("img", {
@@ -53,25 +53,25 @@ var Card = function Card(props) {
     src: "https://robohash.org/".concat(id, "?size=200x200"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 10
     },
     __self: this
   }), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 11
     },
     __self: this
   }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 12
     },
     __self: this
   }, name), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 13
     },
     __self: this
   }, email)))));
@@ -12513,7 +12513,7 @@ var Robots = function Robots(_ref) {
   var _ref$isError = _ref.isError,
       isError = _ref$isError === void 0 ? false : _ref$isError,
       robot = _ref.robot;
-  var pf = _index__WEBPACK_IMPORTED_MODULE_7__["prefix"] !== '' ? '/web-practice' : '/';
+  var pf =  false ? undefined : "/";
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], {
     prefix: _index__WEBPACK_IMPORTED_MODULE_7__["prefix"],
     __source: {
