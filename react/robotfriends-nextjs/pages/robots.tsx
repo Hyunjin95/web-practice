@@ -24,7 +24,7 @@ const Robots: StatelessPage<RobotProps> = ({
   isError = false,
   robot,
 }: RobotProps) => {
-  const pf = prefix !== '' ? '/web-practice' : '/';
+  const pf = process.env.NODE_ENV === 'production' ? '/web-practice' : "/";
 
   return (
     <Layout prefix={prefix}>
