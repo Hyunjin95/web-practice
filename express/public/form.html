@@ -43,7 +43,7 @@
         xhr.addEventListener('load', function () {
           responseDiv = document.querySelector('.ajax_response');
           if (xhr.status >= 400) {
-            responseDiv.innerHTML = 'Email not valid.';
+            responseDiv.innerHTML = xhr.statusText;
             return;
           }
           var result = JSON.parse(xhr.responseText);

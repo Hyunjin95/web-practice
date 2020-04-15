@@ -2,6 +2,7 @@ import { Router, Request } from 'express';
 import path from 'path';
 
 import { emailType, publicPath } from '../app';
+import User from '../models/user';
 
 const router = Router();
 
@@ -24,7 +25,21 @@ router.post('/email_post', (req: Request<{}, {}, emailType>, res) => {
 
 router.post('/ajax_email_request', (req: Request<{}, {}, emailType>, res) => {
   const { email } = req.body;
-  res.status(200).json({ email });
+
+  User.sampleUserExists()
+    .then(async (exists) => {
+      if (!exists) {
+        await User.createSampleUser();
+      }
+      return User.findByEmail(email);
+    })
+    .then((user) => {
+      if (!user.length) {
+        return res.status(404).send('User not found');
+      }
+      return res.json(user[0]);
+    })
+    .catch(() => res.status(500).send('Database Error!!'));
 });
 
 export default router;
