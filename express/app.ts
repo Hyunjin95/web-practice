@@ -12,10 +12,6 @@ dotenv.config();
 // Constants
 const port = process.env.PORT || 3000;
 
-export type emailType = {
-  email: string;
-};
-
 export const publicPath = path.join(__dirname, 'public');
 
 const app = express();
@@ -38,6 +34,7 @@ db.once('open', () => {
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 // Start Server

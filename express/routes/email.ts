@@ -1,22 +1,21 @@
 import { Router, Request } from 'express';
 
-import { emailType } from '../app';
-import User from '../models/user';
+import User, { UserInterface } from '../models/user';
 
 const router = Router();
 
-router.post('/form', (req: Request<{}, {}, emailType>, res) => {
+router.post('/form', (req: Request<{}, {}, UserInterface>, res) => {
   const { email } = req.body;
   res.render('email.ejs', { email });
 });
 
-router.post('/ajax', (req: Request<{}, {}, emailType>, res) => {
+router.post('/ajax', (req: Request<{}, {}, UserInterface>, res) => {
   const { email } = req.body;
 
   User.checkSampleUser()
     .then(async (exists) => {
       if (!exists) {
-        await User.createSampleUser();
+        await User.addSampleUser();
       }
       return User.findByEmail(email);
     })
@@ -26,7 +25,9 @@ router.post('/ajax', (req: Request<{}, {}, emailType>, res) => {
       }
       return res.json(user[0]);
     })
-    .catch(() => res.status(500).send('Database Error!!'));
+    .catch(() => {
+      res.status(500).send('Database Error!!');
+    });
 });
 
 export default router;
