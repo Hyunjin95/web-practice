@@ -12,7 +12,7 @@
       </nav>
     </header>
     <section>
-      <form class="email_form" action="/email_post" method="POST">
+      <form class="email_form" action="/email/form" method="POST">
         email : <input type="email" name="email" />
         <br />
         <input type="submit" value="submit" />
@@ -28,7 +28,7 @@
         .querySelector('.ajax_request')
         .addEventListener('click', function () {
           var email = document.querySelector('.email_form').elements[0].value;
-          requestAjax('http://127.0.0.1:3000/ajax_email_request', email);
+          requestAjax('http://127.0.0.1:3000/email/ajax', email);
         });
 
       function requestAjax(uri, data) {

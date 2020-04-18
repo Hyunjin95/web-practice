@@ -12,7 +12,7 @@ interface UserModel extends mongoose.Model<UserDocument> {
   findByEmail: (
     email: string
   ) => mongoose.DocumentQuery<UserDocument[], UserDocument>;
-  sampleUserExists: () => Promise<boolean>;
+  checkSampleUser: () => Promise<boolean>;
 }
 
 const userSchema = new mongoose.Schema({
@@ -38,7 +38,7 @@ userSchema.statics.findByEmail = function (
   return this.find({ email });
 };
 
-userSchema.statics.sampleUserExists = async function (): Promise<boolean> {
+userSchema.statics.checkSampleUser = async function (): Promise<boolean> {
   try {
     const { email } = sampleUserData;
     const user = await this.findByEmail(email);
