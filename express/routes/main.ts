@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import path from 'path';
-
-import { publicPath } from '../app';
 
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(publicPath, 'main.html'));
+  if (!req.user) {
+    res.render('signin.ejs');
+  } else {
+    const { email } = req.user;
+    res.render('main.ejs', { email });
+  }
 });
 
 router.get('/main', (req, res) => {

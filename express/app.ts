@@ -3,6 +3,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import dotenv from 'dotenv';
+import passport from 'passport';
+import session from 'express-session';
+import flash from 'connect-flash';
 
 import router from './routes/index';
 
@@ -12,6 +15,7 @@ dotenv.config();
 // Constants
 const port = process.env.PORT || 3000;
 
+/* eslint-disable-next-line import/prefer-default-export */
 export const publicPath = path.join(__dirname, 'public');
 
 const app = express();
@@ -20,8 +24,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
-app.use(router);
 app.set('view engine', 'ejs');
+app.use(
+  session({
+    secret: 'Hyunjin Jeong',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use(router);
 
 // Mongoose Configuration
 const db = mongoose.connection;

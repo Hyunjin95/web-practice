@@ -1,31 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-  <!--<![endif]-->
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>미안하다 이거</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
   </head>
   <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
-    <header>
-      <nav>
-        <a href="/form">Go to Form</a>
-        <a href="/login">Go to Login</a>
-      </nav>
-    </header>
+    <h1>Welcome, <%= email %>!</h1>
     <section>
       <h1>미안하다 이거 보여주려고 어그로끌었다..</h1>
       <p>
@@ -55,6 +36,28 @@
       </p>
       <img src="./images/naruto.jfif" alt="어그로" width="600px" />
     </section>
-    <script src="./main.js" async defer></script>
+    <footer>
+      <nav>
+        <button id="logout">Logout</a>
+      </nav>
+    </footer>
+
+    <script>
+      document.getElementById("logout").addEventListener('click', function (e) {
+        e.preventDefault();
+        requestLogOut('http://127.0.0.1:3000/logout');
+      });
+
+      function requestLogOut(uri) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', uri);
+        console.log(uri);
+        xhr.send();
+
+        xhr.addEventListener('load', function () {
+          window.location.href = '/';
+        });
+      }
+    </script>
   </body>
 </html>

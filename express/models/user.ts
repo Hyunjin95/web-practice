@@ -1,18 +1,24 @@
 /* eslint-disable no-console, func-names */
 import mongoose from 'mongoose';
 
-export interface UserInterface extends mongoose.Document {
+export interface UserInterface {
   email: string;
   name: string;
   pw: string;
 }
 
-interface UserModel extends mongoose.Model<UserInterface> {
-  addUser: (userInput: UserInterface) => Promise<UserInterface>;
-  addSampleUser: () => Promise<UserInterface>;
+interface UserDocument extends mongoose.Document {
+  email: UserInterface['email'];
+  name: UserInterface['name'];
+  pw: UserInterface['pw'];
+}
+
+interface UserModel extends mongoose.Model<UserDocument> {
+  addUser: (userInput: UserInterface) => Promise<UserDocument>;
+  addSampleUser: () => Promise<UserDocument>;
   findByEmail: (
     email: string
-  ) => mongoose.DocumentQuery<UserInterface[], UserInterface>;
+  ) => mongoose.DocumentQuery<UserDocument[], UserDocument>;
   checkSampleUser: () => Promise<boolean>;
 }
 
@@ -30,18 +36,18 @@ const sampleUserData = {
 
 userSchema.statics.addUser = function (
   userInput: UserInterface
-): Promise<UserModel> {
+): Promise<UserDocument> {
   const newUser = new this(userInput);
   return newUser.save();
 };
 
-userSchema.statics.addSampleUser = function (): Promise<UserModel> {
+userSchema.statics.addSampleUser = function (): Promise<UserDocument> {
   return this.addUser(sampleUserData);
 };
 
 userSchema.statics.findByEmail = function (
   email: string
-): mongoose.DocumentQuery<UserInterface[], UserInterface> {
+): mongoose.DocumentQuery<UserDocument[], UserDocument> {
   return this.find({ email });
 };
 
@@ -59,6 +65,6 @@ userSchema.statics.checkSampleUser = async function (): Promise<boolean> {
   }
 };
 
-const User = mongoose.model<UserInterface, UserModel>('User', userSchema);
+const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
 
 export default User;

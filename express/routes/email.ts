@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/form', (req: Request<{}, {}, UserInterface>, res) => {
   const { email } = req.body;
-  res.render('email.ejs', { email });
+  res.render('login.ejs', { email });
 });
 
 router.post('/ajax', (req: Request<{}, {}, UserInterface>, res) => {

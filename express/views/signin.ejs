@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignIn</title>
+    <style>
+      .ajax_response {
+        color: red;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/signup">Sign Up</a>
+      </nav>
+    </header>
+    <h1>Sign In</h1>
+    <section>
+      <form class="email-form">
+        email: <input name="email" type="email" /> <br />
+        name: <input name="name" type="text" /> <br />
+        password: <input name="pw" type="password" /> <br />
+      </form>
+    </section>
+    <section>
+      <button class="ajax_request">Sign In by Ajax</button>
+      <div class="ajax_response"></div>
+    </section>
+
+    <script>
+      document
+        .querySelector('.ajax_request')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          var email = document.getElementsByName('email')[0].value;
+          var pw = document.getElementsByName('pw')[0].value;
+          requestAjax('http://127.0.0.1:3000/signin', email, pw);
+        });
+
+      function requestAjax(uri, email, pw) {
+        var data = { email: email, pw: pw };
+        data = JSON.stringify(data);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', uri);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(data);
+
+        xhr.addEventListener('load', function () {
+          responseDiv = document.querySelector('.ajax_response');
+          var result = JSON.parse(xhr.responseText);
+          if (result.email) {
+            window.location.href = '/';
+          } else {
+            responseDiv.innerHTML = result;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
