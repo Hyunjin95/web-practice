@@ -7,7 +7,7 @@
     <style>
       .message {
         color: red;
-        margin-bottom: 2rem;
+        margin-top: 2rem;
       }
     </style>
   </head>
@@ -18,12 +18,13 @@
       </nav>
     </header>
     <h1>Sign Up</h1>
-    <section class="message"><%= message %></section>
     <form action="/signup" method="post">
-      email: <input name="email" type="email" /> <br />
-      name: <input name="name" type="text" /> <br />
-      password: <input name="pw" type="password" /> <br />
+      email: <input name="email" type="email" required aria-required="true" />
+      <br />
+      password:
+      <input name="pw" type="password" required aria-required="true" /> <br />
       <input type="submit" value="Sign Up" />
     </form>
+    <section class="message"><%= message %></section>
   </body>
 </html>

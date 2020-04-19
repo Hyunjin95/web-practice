@@ -22,7 +22,10 @@ passport.use(
       User.findByEmail(email)
         .then((usr) => {
           if (!usr.length) {
-            return done(null, false, { message: 'User not Found.' });
+            return done(null, false, { message: 'Incorrect Username' });
+          }
+          if (!usr[0].validatePw(pw)) {
+            return done(null, false, { message: 'Incorrect Password' });
           }
           return done(null, usr[0]);
         })
@@ -41,7 +44,7 @@ passport.use(
           if (usr.length) {
             return done(null, false, { message: 'User already exists.' });
           }
-          return User.addUser({ name: 'userName', email, pw })
+          return User.addUser({ email, pw })
             .then((user) => done(null, { email: user.email }))
             .catch(() => done(null, false, { message: 'Failed to sign up' }));
         })

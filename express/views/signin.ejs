@@ -20,9 +20,10 @@
     <h1>Sign In</h1>
     <section>
       <form class="email-form">
-        email: <input name="email" type="email" /> <br />
-        name: <input name="name" type="text" /> <br />
-        password: <input name="pw" type="password" /> <br />
+        email:
+        <input name="email" type="email" required aria-required="true" /> <br />
+        password:
+        <input name="pw" type="password" required aria-required="true" /> <br />
       </form>
     </section>
     <section>
@@ -34,13 +35,41 @@
       document
         .querySelector('.ajax_request')
         .addEventListener('click', function (e) {
-          e.preventDefault();
-          var email = document.getElementsByName('email')[0].value;
-          var pw = document.getElementsByName('pw')[0].value;
-          requestAjax('http://127.0.0.1:3000/signin', email, pw);
+          handleSubmit(e);
+        });
+      document
+        .getElementsByName('pw')[0]
+        .addEventListener('keydown', function (e) {
+          if (e.code === 'Enter') {
+            handleSubmit(e);
+          }
+        });
+      document
+        .getElementsByName('email')[0]
+        .addEventListener('keydown', function (e) {
+          if (e.code === 'Enter') {
+            handleSubmit(e);
+          }
         });
 
+      function handleSubmit(e) {
+        e.preventDefault();
+        var email = document.getElementsByName('email')[0].value;
+        var pw = document.getElementsByName('pw')[0].value;
+        requestAjax('http://127.0.0.1:3000/signin', email, pw);
+      }
+
       function requestAjax(uri, email, pw) {
+        responseDiv = document.querySelector('.ajax_response');
+        if (!email) {
+          responseDiv.innerHTML = 'Email is required';
+          return;
+        }
+        if (!pw) {
+          responseDiv.innerHTML = 'Pw is required';
+          return;
+        }
+
         var data = { email: email, pw: pw };
         data = JSON.stringify(data);
 
@@ -50,7 +79,6 @@
         xhr.send(data);
 
         xhr.addEventListener('load', function () {
-          responseDiv = document.querySelector('.ajax_response');
           var result = JSON.parse(xhr.responseText);
           if (result.email) {
             window.location.href = '/';
