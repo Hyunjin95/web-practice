@@ -12,7 +12,7 @@ First, put this line:
 npm install
 ```
 
-Then, set environment variables:
+Then, set environment variables in your '.env' file in the project root directory:
 
 - `PORT`: The port number for the app.
 
