@@ -27,11 +27,6 @@ const userSchema = new mongoose.Schema({
   pw: { type: String, required: true },
 });
 
-const sampleUserData = {
-  email: 'das01063@snu.ac.kr',
-  pw: 'pw',
-};
-
 userSchema.statics.addUser = function (
   userInput: UserInterface
 ): Promise<UserDocument> {
@@ -39,28 +34,10 @@ userSchema.statics.addUser = function (
   return newUser.save();
 };
 
-userSchema.statics.addSampleUser = function (): Promise<UserDocument> {
-  return this.addUser(sampleUserData);
-};
-
 userSchema.statics.findByEmail = function (
   email: UserInterface['email']
 ): mongoose.DocumentQuery<UserDocument[], UserDocument> {
   return this.find({ email });
-};
-
-userSchema.statics.checkSampleUser = async function (): Promise<boolean> {
-  try {
-    const { email } = sampleUserData;
-    const user = await this.findByEmail(email);
-
-    if (!user.length) {
-      return false;
-    }
-    return true;
-  } catch (err) {
-    throw new Error('Database Error!');
-  }
 };
 
 userSchema.methods.validatePw = function (
