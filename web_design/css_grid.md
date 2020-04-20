@@ -1,8 +1,8 @@
 # CSS Grid Answer Sheet
 
-There are 28 problems, which are great to learn the basics about CSS grid, on [CSS Grid]("https://cssgridgarden.com/").
+There are 28 problems, which are great to learn the basics about CSS grid, on [CSS Grid](https://cssgridgarden.com/).
 
-For the CSS grid cheatsheet, you can visit [A Complete Guide to Grid]("https://css-tricks.com/snippets/css/complete-guide-grid/").
+For the CSS grid cheatsheet, you can visit [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/).
 
 Below are the answers to the problems.
 
