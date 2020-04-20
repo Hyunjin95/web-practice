@@ -1,3 +1,3 @@
 # Design
 
-This folder contains materials related to web design.
+This folder contains resources related to web design.
