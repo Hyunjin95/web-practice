@@ -1,8 +1,8 @@
 # Flexbox Froggy Answer Sheet
 
-There are 24 problems, which are great to learn the basics about flexbox, on [Flebox Froggy]("https://flexboxfroggy.com/").
+There are 24 problems, which are great to learn the basics about flexbox, on [Flebox Froggy](https://flexboxfroggy.com/).
 
-For the flexbox cheatsheet, you can visit [Flexbox Cheatsheet]("https://darekkay.com/dev/flexbox-cheatsheet.html").
+For the flexbox cheatsheet, you can visit [Flexbox Cheatsheet](https://darekkay.com/dev/flexbox-cheatsheet.html).
 
 Below are the answers to the problems.
 
