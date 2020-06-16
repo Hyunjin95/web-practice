@@ -31,6 +31,32 @@ export const people: Person[] = [
 ];
 
 export const findPersonById = (id: number): Person => {
-  const filteredPerson = people.filter((element) => element.id === id);
+  const filteredPerson = people.filter((person) => person.id === id);
   return filteredPerson[0];
+};
+
+export const addPerson = (
+  name: string,
+  age: number,
+  country: string,
+  gender: string,
+): Person => {
+  const newPerson = {
+    id: people.length + 1,
+    name,
+    age,
+    country,
+    gender,
+  };
+  people.push(newPerson);
+  return newPerson;
+};
+
+export const deletePerson = (id: number): boolean => {
+  const deletedPersonIndex = people.findIndex((person) => person.id === id);
+  if (deletedPersonIndex === -1) {
+    return false;
+  }
+  people.splice(deletedPersonIndex, 1);
+  return true;
 };
