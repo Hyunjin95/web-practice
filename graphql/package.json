@@ -1,0 +1,9 @@
+{
+  "name": "graphql-practice",
+  "version": "1.0.0",
+  "description": "Practice GraphQL!",
+  "main": "index.js",
+  "repository": "https://github.com/hyunjinjeong/web-practice/graphql",
+  "author": "Hyunjin Jeong",
+  "license": "MIT"
+}
