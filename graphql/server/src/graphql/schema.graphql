@@ -13,12 +13,15 @@ type Movie {
   summary: String
   language: String
   medium_cover_image: String
+  description_intro: String
 }
 
 type Query {
   people: [Person]!
   person(id: Int!): Person
   movies(limit: Int, rating: Float): [Movie]!
+  movie(id: Int!): Movie
+  suggestions(id: Int!): [Movie]!
 }
 
 type Mutation {

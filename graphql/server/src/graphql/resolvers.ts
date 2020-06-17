@@ -1,5 +1,5 @@
 import { Person, people, findPersonById, addPerson, deletePerson } from './db';
-import { Movie, getMovies } from './wrapAPI';
+import { Movie, getMovies, getMovie, getSuggestions } from './wrapAPI';
 
 const resolvers = {
   Query: {
@@ -9,6 +9,10 @@ const resolvers = {
       _: unknown,
       { limit, rating }: { limit: number; rating: number },
     ): Promise<Movie[]> => getMovies(limit, rating),
+    movie: async (_: unknown, { id }: { id: number }): Promise<Movie> =>
+      getMovie(id),
+    suggestions: async (_: unknown, { id }: { id: number }): Promise<Movie[]> =>
+      getSuggestions(id),
   },
   Mutation: {
     addPerson: (
