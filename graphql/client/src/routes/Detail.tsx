@@ -1,9 +1,11 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+
+import Movie from '../components/Movie';
 
 const Container = styled.main`
   height: 100vh;
@@ -47,6 +49,21 @@ const Poster = styled.div`
   background-position: center center;
 `;
 
+const SuggestionContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const Movies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  width: 60%;
+  position: relative;
+`;
+
 interface Movie {
   title: string;
   rating: number;
@@ -55,8 +72,14 @@ interface Movie {
   description_intro: string;
 }
 
+interface Suggestion {
+  id: number;
+  medium_cover_image: string;
+}
+
 interface MovieData {
   movie: Movie;
+  suggestions: Suggestion[];
 }
 
 const GET_MOVIE = gql`
@@ -67,6 +90,10 @@ const GET_MOVIE = gql`
       language
       rating
       description_intro
+    }
+    suggestions(id: $id) {
+      id
+      medium_cover_image
     }
   }
 `;
@@ -82,16 +109,38 @@ const Detail = (): JSX.Element => {
   });
 
   return (
-    <Container>
-      <Column>
-        <Title>{loading ? 'Loading...' : data?.movie.title}</Title>
-        <Subtitle>
-          {data?.movie?.language} · {data?.movie?.rating}
-        </Subtitle>
-        <Description>{data?.movie?.description_intro}</Description>
-      </Column>
-      <Poster bg={data?.movie?.medium_cover_image} />
-    </Container>
+    <>
+      <Link to="/" style={{ position: 'absolute', top: '16px', left: '16px' }}>
+        Home
+      </Link>
+      <Container>
+        <Column>
+          <Title>{loading ? 'Loading...' : data?.movie.title}</Title>
+          <Subtitle>
+            {!loading &&
+              data &&
+              `${data?.movie?.language} · ${data?.movie?.rating}`}
+          </Subtitle>
+          <Description>
+            {!loading && data?.movie?.description_intro}
+          </Description>
+        </Column>
+        {!loading && <Poster bg={data?.movie?.medium_cover_image} />}
+      </Container>
+      <SuggestionContainer>
+        <Title>{!loading && 'Suggestions'}</Title>
+        <Movies>
+          {!loading &&
+            data?.suggestions?.map((movie) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                bg={movie.medium_cover_image}
+              />
+            ))}
+        </Movies>
+      </SuggestionContainer>
+    </>
   );
 };
 
