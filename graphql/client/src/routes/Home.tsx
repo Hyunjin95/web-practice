@@ -53,6 +53,7 @@ const Movies = styled.div`
 interface Movie {
   id: number;
   medium_cover_image: string;
+  isLiked: boolean;
 }
 
 interface MovieData {
@@ -69,6 +70,7 @@ const GET_MOVIES = gql`
     movies {
       id
       medium_cover_image
+      isLiked @client
     }
   }
 `;
@@ -93,7 +95,13 @@ const Home = (): JSX.Element => {
       )}
       <Movies>
         {data?.movies?.map((movie) => (
-          <Movie key={movie.id} id={movie.id} bg={movie.medium_cover_image} />
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            isLiked={movie.isLiked}
+            bg={movie.medium_cover_image}
+            showLikeButton
+          />
         ))}
       </Movies>
     </Container>

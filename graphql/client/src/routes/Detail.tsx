@@ -65,8 +65,10 @@ const Movies = styled.div`
 `;
 
 interface Movie {
+  id: number;
   title: string;
   rating: number;
+  isLiked: boolean;
   medium_cover_image: string;
   language: string;
   description_intro: string;
@@ -75,6 +77,7 @@ interface Movie {
 interface Suggestion {
   id: number;
   medium_cover_image: string;
+  isLiked: boolean;
 }
 
 interface MovieData {
@@ -85,14 +88,17 @@ interface MovieData {
 const GET_MOVIE = gql`
   query getMovie($id: Int!) {
     movie(id: $id) {
+      id
       title
       medium_cover_image
       language
+      isLiked @client
       rating
       description_intro
     }
     suggestions(id: $id) {
       id
+      isLiked @client
       medium_cover_image
     }
   }
@@ -115,7 +121,11 @@ const Detail = (): JSX.Element => {
       </Link>
       <Container>
         <Column>
-          <Title>{loading ? 'Loading...' : data?.movie.title}</Title>
+          <Title>
+            {!loading && data
+              ? `${data.movie.title} ${data.movie.isLiked ? '💖' : '😞'}`
+              : 'Loading...'}
+          </Title>
           <Subtitle>
             {!loading &&
               data &&
@@ -134,6 +144,7 @@ const Detail = (): JSX.Element => {
             data?.suggestions?.map((movie) => (
               <Movie
                 key={movie.id}
+                isLiked={movie.isLiked}
                 id={movie.id}
                 bg={movie.medium_cover_image}
               />
